@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabColorsComponentComponent implements OnInit {
 
+  colors: string[];
+
   constructor() { }
 
   ngOnInit() {
+    this.colors = ['red', 'green', 'blue', 'yellow', 'purple'];
   }
 
 }
