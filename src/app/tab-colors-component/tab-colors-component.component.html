@@ -1,9 +1,14 @@
 <p>tab-colors-component works!</p>
-<mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile *ngFor="let c of colors">
-        <app-tile-color-component [colorobj]=c></app-tile-color-component>
+<mat-grid-list [cols]="breakpoint" rowHeight="1:1">
+    <mat-grid-tile *ngFor="let c of colors"
+        [style.background]=getColor(c.red,c.green,c.blue)
+        [style.color]=getTextColor(c.red,c.green,c.blue)
+        (window:resize)="onResize($event)">
+        <mat-grid-tile-header>{{c.name | uppercase}}</mat-grid-tile-header>
+        R: {{c.red}}<br>
+        G: {{c.green}}<br>
+        B: {{c.blue}}<br>
     </mat-grid-tile>
-
 </mat-grid-list>
 
   

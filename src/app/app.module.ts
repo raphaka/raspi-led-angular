@@ -9,14 +9,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule, MatGridList } from '@angular/material/grid-list';
 import { TabColorsComponentComponent } from './tab-colors-component/tab-colors-component.component';
 import { TabEffectsComponentComponent } from './tab-effects-component/tab-effects-component.component';
-import { TileColorComponentComponent } from './tile-color-component/tile-color-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TabColorsComponentComponent,
-    TabEffectsComponentComponent,
-    TileColorComponentComponent
+    TabEffectsComponentComponent
   ],
   imports: [
     BrowserModule,
