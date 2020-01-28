@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Color } from '../shared/color';
 
 @Component({
   selector: 'app-tile-color-component',
@@ -7,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TileColorComponentComponent implements OnInit {
 
-  @Input() colorobj: string;
+  @Input() colorobj: Color;
 
   constructor() { }
 
