@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Color } from '../shared/color';
-
+import { ColorsService } from '../services/colors.service';
 
 @Component({
   selector: 'app-tab-colors-component',
@@ -12,7 +12,7 @@ export class TabColorsComponentComponent implements OnInit {
   breakpoint: number;
   colors: Color[];
 
-  constructor() { }
+  constructor(private ser_colors: ColorsService) { }
 
   public getTextColor(r, g, b): string {
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
@@ -35,15 +35,7 @@ export class TabColorsComponentComponent implements OnInit {
 
   ngOnInit() {
     this.breakpoint = (window.innerWidth <= 600) ? 2 : 6;
-    this.colors = [
-      { red: 0, green: 0, blue: 0, name: 'black' },
-      {  red : 255,  green : 255,  blue : 255,  name : 'white' },
-      {  red : 255,  green : 0,  blue : 0,  name : 'red' },
-      {  red : 0,  green : 255,  blue : 0,  name : 'green' },
-      {  red : 0,  green : 0,  blue : 255,  name : 'blue' },
-      {  red : 255,  green : 255,  blue : 0,  name : 'yellow' },
-      {  red : 0,  green : 255,  blue : 255,  name : 'cyan' }
-    ];
+    this.colors = this.ser_colors.getColors();
   }
 
 }

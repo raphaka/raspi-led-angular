@@ -9,6 +9,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatGridListModule, MatGridList } from '@angular/material/grid-list';
 import { TabColorsComponentComponent } from './tab-colors-component/tab-colors-component.component';
 import { TabEffectsComponentComponent } from './tab-effects-component/tab-effects-component.component';
+import { ColorsService } from './services/colors.service';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { TabEffectsComponentComponent } from './tab-effects-component/tab-effect
     MatTabsModule,
     MatGridListModule
   ],
-  providers: [],
+  providers: [ColorsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
