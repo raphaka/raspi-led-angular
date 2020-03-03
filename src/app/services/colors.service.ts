@@ -1,22 +1,17 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Color } from '../shared/color';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColorsService {
 
-  constructor() { }
+  private url: string = "http://192.168.2.106:42069/colors";
+  constructor(private http: HttpClient) { }
 
   getColors(){
-    return [
-      { red: 0, green: 0, blue: 0, name: 'black' },
-      {  red : 255,  green : 255,  blue : 255,  name : 'white' },
-      {  red : 255,  green : 0,  blue : 0,  name : 'red' },
-      {  red : 0,  green : 255,  blue : 0,  name : 'green' },
-      {  red : 0,  green : 0,  blue : 255,  name : 'blue' },
-      {  red : 255,  green : 255,  blue : 0,  name : 'yellow' },
-      {  red : 0,  green : 255,  blue : 255,  name : 'cyan' }
-    ]
+    return this.http.get<Color[]>(this.url);
   }
 
 }

@@ -14,6 +14,27 @@ export class TabColorsComponentComponent implements OnInit {
 
   constructor(private ser_colors: ColorsService) { }
 
+  onResize(event) {
+    this.breakpoint = (event.target.innerWidth <= 600) ? 2 : 6;
+  }
+
+  ngOnInit() {
+    this.breakpoint = (window.innerWidth <= 600) ? 2 : 6;
+    this.ser_colors.getColors().subscribe(data => this.colors = this.getColorsFromArray(data));
+  }
+
+  //Calculates R,G,B from hex once and saves it into Color objects
+  private getColorsFromArray(cols: Color[]){
+    for (let c of cols){
+      var bigint = parseInt(c.value, 16);
+      c.red = (bigint >> 16) & 255;
+      c.green = (bigint >> 8) & 255;
+      c.blue = bigint & 255;
+    }
+    console.log(cols);
+    return cols;
+  }
+
   public getTextColor(r, g, b): string {
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
     if (brightness < 123) {
@@ -27,15 +48,6 @@ export class TabColorsComponentComponent implements OnInit {
     return 'rgb(' + red +
       ',' + green +
       ',' + blue + ')';
-  }
-
-  onResize(event) {
-    this.breakpoint = (event.target.innerWidth <= 600) ? 2 : 6;
-  }
-
-  ngOnInit() {
-    this.breakpoint = (window.innerWidth <= 600) ? 2 : 6;
-    this.colors = this.ser_colors.getColors();
   }
 
 }
