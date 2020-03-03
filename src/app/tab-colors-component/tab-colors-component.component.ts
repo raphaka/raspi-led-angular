@@ -35,6 +35,10 @@ export class TabColorsComponentComponent implements OnInit {
     return cols;
   }
 
+  private setColor(c: String){
+    this.ser_colors.setColor(c);
+  }
+
   public getTextColor(r, g, b): string {
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
     if (brightness < 123) {
