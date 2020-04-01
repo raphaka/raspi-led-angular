@@ -13,10 +13,8 @@ import {
   MatIconModule,
   MatDialogModule
 } from '@angular/material';
-// import { MatTabsModule } from '@angular/material/tabs';
-// import { MatGridListModule, MatGridList } from '@angular/material/grid-list';
-// import { MatIconModule } from '@angular/material/icon';
-// import { Matodule } from '@angular/material/icon';
+import { ColorPickerModule } from 'ngx-color-picker';
+import { ColorChromeModule } from 'ngx-color/chrome';
 
 
 import { TabColorsComponentComponent } from './tab-colors-component/tab-colors-component.component';
@@ -42,7 +40,9 @@ import { PostColorDialogComponent } from './post-color-dialog/post-color-dialog.
     MatGridListModule,
     HttpClientModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    ColorPickerModule,
+    ColorChromeModule
   ],
   providers: [ColorsService],
   bootstrap: [AppComponent]

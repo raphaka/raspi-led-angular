@@ -1,2 +1,16 @@
 <h2 mat-dialog-title>Add a new color</h2>
-<mat-dialog-content>Please select a color and a name then click OK to save it or click CANCEL to go back</mat-dialog-content>
+<mat-dialog-content>
+  <ol>
+    <li>Click on the brush symbol to select a color</li>
+    <li>Type a name for the color in the input box</li>
+    <li>Click OK to save</li>
+  </ol>
+  <color-chrome [color]="state" (onChangeComplete)="changeComplete($event)">00ff00</color-chrome>
+  <!-- <mat-icon [(colorPicker)]="color" [style.color]="color">brush</mat-icon><br> -->
+  <!--  <input type="text" name="" value="">
+  <mat-dialog-actions>
+    <button mat-button>Cancel</button>
+    <button mat-button>OK</button>
+
+  </mat-dialog-actions> -->
+</mat-dialog-content>

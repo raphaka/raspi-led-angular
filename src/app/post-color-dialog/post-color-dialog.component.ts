@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ColorEvent } from 'ngx-color';
+
 
 @Component({
   selector: 'app-post-color-dialog',
@@ -12,4 +14,7 @@ export class PostColorDialogComponent implements OnInit {
   ngOnInit() {
   }
 
+  handleChange($event: ColorEvent) {
+    console.log($event.color);
+  }
 }
