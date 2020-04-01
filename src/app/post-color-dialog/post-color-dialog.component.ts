@@ -14,7 +14,10 @@ export class PostColorDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  handleChange($event: ColorEvent) {
-    console.log($event.color);
+  private color = "000000";
+
+  private logcolor(){
+    console.log(this.color);
   }
+
 }
