@@ -18,4 +18,6 @@ export class ColorsService {
     this.http.get(`${this.url}/set/colorhex/${c}`,{responseType: 'text' as 'text'}).subscribe(data => data);
   }
 
+  putColor(){}
+
 }

@@ -1,5 +1,8 @@
 <!--p>tab-colors-component works!</p-->
 <mat-grid-list [cols]="breakpoint" rowHeight="1:1">
+    <mat-grid-tile [style.background]="'lightgrey'" (click)="this.postColorDialog()">
+      <mat-icon>add</mat-icon>
+    </mat-grid-tile>
     <mat-grid-tile *ngFor="let c of colors"
         [style.background]="'#'+c.value"
         [style.color]=getTextColor(c.red,c.green,c.blue)

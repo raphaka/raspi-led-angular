@@ -5,17 +5,34 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatGridListModule, MatGridList } from '@angular/material/grid-list';
+
+import {
+  MatTabsModule,
+  MatGridListModule,
+  MatGridList,
+  MatIconModule,
+  MatDialogModule
+} from '@angular/material';
+// import { MatTabsModule } from '@angular/material/tabs';
+// import { MatGridListModule, MatGridList } from '@angular/material/grid-list';
+// import { MatIconModule } from '@angular/material/icon';
+// import { Matodule } from '@angular/material/icon';
+
+
 import { TabColorsComponentComponent } from './tab-colors-component/tab-colors-component.component';
 import { TabEffectsComponentComponent } from './tab-effects-component/tab-effects-component.component';
 import { ColorsService } from './services/colors.service';
+import { PostColorDialogComponent } from './post-color-dialog/post-color-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TabColorsComponentComponent,
-    TabEffectsComponentComponent
+    TabEffectsComponentComponent,
+    PostColorDialogComponent
+  ],
+  entryComponents: [
+    PostColorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +40,9 @@ import { ColorsService } from './services/colors.service';
     BrowserAnimationsModule,
     MatTabsModule,
     MatGridListModule,
-    HttpClientModule
+    HttpClientModule,
+    MatIconModule,
+    MatDialogModule
   ],
   providers: [ColorsService],
   bootstrap: [AppComponent]

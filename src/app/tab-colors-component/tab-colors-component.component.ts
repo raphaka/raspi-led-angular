@@ -1,6 +1,8 @@
+import { MatDialog } from '@angular/material';
 import { Component, OnInit } from '@angular/core';
 import { Color } from '../shared/color';
 import { ColorsService } from '../services/colors.service';
+import { PostColorDialogComponent } from '../post-color-dialog/post-color-dialog.component';
 
 @Component({
   selector: 'app-tab-colors-component',
@@ -12,7 +14,7 @@ export class TabColorsComponentComponent implements OnInit {
   breakpoint: number;
   colors: Color[];
 
-  constructor(private ser_colors: ColorsService) { }
+  constructor(private ser_colors: ColorsService, public dialog: MatDialog) {}
 
   onResize(event) {
     this.breakpoint = (event.target.innerWidth <= 600) ? 2 : 6;
@@ -37,6 +39,10 @@ export class TabColorsComponentComponent implements OnInit {
 
   private setColor(c: String){
     this.ser_colors.setColor(c);
+  }
+
+  private postColorDialog(){
+    this.dialog.open(PostColorDialogComponent);
   }
 
   public getTextColor(r, g, b): string {
