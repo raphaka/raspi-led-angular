@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ColorEvent } from 'ngx-color';
+import { ColorsService } from '../services/colors.service';
 
 
 @Component({
@@ -9,15 +10,19 @@ import { ColorEvent } from 'ngx-color';
 })
 export class PostColorDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ser_colors: ColorsService) { }
 
   ngOnInit() {
   }
 
-  private color = "000000";
+  private color: String = "000000";
 
-  private logcolor(){
-    console.log(this.color);
+  private postColor(n: String, v: String){
+      this.ser_colors.postColor(n, v);
+  }
+
+  logcolor(c: String){
+    console.log(c);
   }
 
 }

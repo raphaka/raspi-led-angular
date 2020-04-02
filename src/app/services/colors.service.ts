@@ -18,6 +18,11 @@ export class ColorsService {
     this.http.get(`${this.url}/set/colorhex/${c}`,{responseType: 'text' as 'text'}).subscribe(data => data);
   }
 
-  putColor(){}
+  postColor(n: String, v: String){
+    let body = JSON.stringify({name:n, value:v.replace("#", "")});
+    console.log(body);
+    let headers = { 'Content-Type': 'application/json' }
+    this.http.post(`${this.url}/colors`, body, { headers, responseType: 'text' as 'text' }).subscribe(data => data);
+  }
 
 }
