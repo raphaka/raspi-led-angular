@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ColorEvent } from 'ngx-color';
 import { ColorsService } from '../services/colors.service';
 
+import * as _ from 'underscore';
 
 @Component({
   selector: 'app-post-color-dialog',
@@ -12,8 +13,7 @@ export class PostColorDialogComponent implements OnInit {
 
   constructor(private ser_colors: ColorsService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   private color: String = "000000";
 
@@ -21,8 +21,12 @@ export class PostColorDialogComponent implements OnInit {
       this.ser_colors.postColor(n, v);
   }
 
-  logcolor(c: String){
-    console.log(c);
+  private setColor(c: String){
+    console.log(c.replace("#", ""));
+    this.ser_colors.setColor(c.replace("#", ""));
   }
+
+  //limit the request to 12.5 hz, used for colorPickerChange event
+  private throttledSetColor = _.throttle(c => this.setColor(c), 80, {});
 
 }

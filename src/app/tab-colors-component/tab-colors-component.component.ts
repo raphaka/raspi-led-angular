@@ -33,7 +33,6 @@ export class TabColorsComponentComponent implements OnInit {
       c.green = (bigint >> 8) & 255;
       c.blue = bigint & 255;
     }
-    console.log(cols);
     return cols;
   }
 

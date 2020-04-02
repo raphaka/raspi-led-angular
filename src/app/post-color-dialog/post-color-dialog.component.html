@@ -6,7 +6,7 @@
     [cpWidth]="250"
     [cpAlphaChannel]="'disabled'"
     [(colorPicker)]="color"
-    (colorPickerChange)="logcolor(color)">
+    (colorPickerChange)="throttledSetColor(color)">
   </span>
 
     <mat-form-field appearance="fill" class="mat-form">
