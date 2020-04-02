@@ -22,7 +22,7 @@ export class TabColorsComponentComponent implements OnInit {
 
   ngOnInit() {
     this.breakpoint = (window.innerWidth <= 600) ? 2 : 6;
-    this.ser_colors.getColors().subscribe(data => this.colors = this.getColorsFromArray(data));
+    this.ser_colors.getColors().subscribe(data => this.colors = this.getColorsFromArray(data)); //todo auto refresh
   }
 
   //Calculates R,G,B from hex once and saves it into Color objects
@@ -41,7 +41,15 @@ export class TabColorsComponentComponent implements OnInit {
   }
 
   private postColorDialog(){
-    this.dialog.open(PostColorDialogComponent);
+    let dialogRef = this.dialog.open(PostColorDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      this.refreshColors();
+    });
+    //this.ser_colors.getColors().subscribe(data => this.colors = this.getColorsFromArray(data));
+  }
+
+  private refreshColors() {
+    this.ser_colors.getColors().subscribe(data => this.colors = this.getColorsFromArray(data));
   }
 
   public getTextColor(r, g, b): string {

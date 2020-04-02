@@ -11,6 +11,8 @@ export class ColorsService {
   constructor(private http: HttpClient) { }
 
   getColors(){
+    setTimeout(() => { console.log("sleeping"); }, 2000);
+    console.log(this.http.get<Color[]>(`${this.url}/colors`));
     return this.http.get<Color[]>(`${this.url}/colors`);
   }
 
@@ -20,7 +22,6 @@ export class ColorsService {
 
   postColor(n: String, v: String){
     let body = JSON.stringify({name:n, value:v.replace("#", "")});
-    console.log(body);
     let headers = { 'Content-Type': 'application/json' }
     this.http.post(`${this.url}/colors`, body, { headers, responseType: 'text' as 'text' }).subscribe(data => data);
   }

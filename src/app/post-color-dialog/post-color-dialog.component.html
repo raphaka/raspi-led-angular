@@ -14,6 +14,6 @@
       <input matInput [(ngModel)]="name">
     </mat-form-field>
     <br>
-    <button mat-button>Cancel</button>
-    <button mat-button (click)="postColor(name, color)">Save</button>
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-button (click)="postColor(name, color)" [mat-dialog-close]="true">Save</button>
 </mat-dialog-content>

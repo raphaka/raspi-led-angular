@@ -17,12 +17,13 @@ export class PostColorDialogComponent implements OnInit {
 
   private color: String = "000000";
 
+  //todo validate if name is given
+  //todo auto refresh color list
   private postColor(n: String, v: String){
-      this.ser_colors.postColor(n, v);
+    this.ser_colors.postColor(n, v);
   }
 
   private setColor(c: String){
-    console.log(c.replace("#", ""));
     this.ser_colors.setColor(c.replace("#", ""));
   }
 
