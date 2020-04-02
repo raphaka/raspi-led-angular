@@ -40,12 +40,16 @@ export class TabColorsComponentComponent implements OnInit {
     this.ser_colors.setColor(c);
   }
 
+  private deleteColor(id: String){
+    this.ser_colors.deleteColor(id);
+    this.refreshColors();
+  }
+
   private postColorDialog(){
     let dialogRef = this.dialog.open(PostColorDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.refreshColors();
     });
-    //this.ser_colors.getColors().subscribe(data => this.colors = this.getColorsFromArray(data));
   }
 
   private refreshColors() {

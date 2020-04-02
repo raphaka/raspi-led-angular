@@ -1,0 +1,16 @@
+#delIcon {
+  color: getTextColor(c.red,c.green,c.blue);
+  right:0px;
+}
+
+.text-inside-tile {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+
+.icon-inside-tile {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}

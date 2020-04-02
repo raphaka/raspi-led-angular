@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Color } from '../shared/color';
 
 @Injectable({
@@ -11,8 +12,6 @@ export class ColorsService {
   constructor(private http: HttpClient) { }
 
   getColors(){
-    setTimeout(() => { console.log("sleeping"); }, 2000);
-    console.log(this.http.get<Color[]>(`${this.url}/colors`));
     return this.http.get<Color[]>(`${this.url}/colors`);
   }
 
@@ -24,6 +23,19 @@ export class ColorsService {
     let body = JSON.stringify({name:n, value:v.replace("#", "")});
     let headers = { 'Content-Type': 'application/json' }
     this.http.post(`${this.url}/colors`, body, { headers, responseType: 'text' as 'text' }).subscribe(data => data);
+  }
+
+  deleteColor(i: String){
+    //let myBody = JSON.stringify({id:i});
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      }),
+      body: JSON.stringify({id:i}),
+      responseType: 'text' as 'text'
+    };
+    //let myHeaders = new Htt{ 'Content-Type': 'application/json' }
+    this.http.delete(`${this.url}/colors`, httpOptions).subscribe(data => data);
   }
 
 }

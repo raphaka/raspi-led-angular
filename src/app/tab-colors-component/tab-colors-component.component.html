@@ -9,9 +9,15 @@
         (window:resize)="onResize($event)"
         (click)="this.setColor(c.value)">
         <mat-grid-tile-header>{{c.name | uppercase}}</mat-grid-tile-header>
+        <span class="text-inside-tile">
         Hex: {{c.value}}<br>
         R: {{c.red}}<br>
         G: {{c.green}}<br>
-        B: {{c.blue}}<br>
+        B: {{c.blue}}
+        </span>
+        <span class="icon-inside-tile">
+
+        <mat-icon id="delIcon" (click)="this.deleteColor(c.id)">delete</mat-icon>
+        </span>
     </mat-grid-tile>
 </mat-grid-list>
