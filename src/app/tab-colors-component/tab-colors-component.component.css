@@ -2,10 +2,6 @@
   color: getTextColor(c.red,c.green,c.blue);
 }
 
-/* #addIcon {
-  font-size: xx-large;
-} */
-
 .text-inside-tile {
   position: absolute;
   bottom: 5px;
@@ -17,3 +13,5 @@
   bottom: 5px;
   right: 5px;
 }
+
+.mat-icon { cursor: pointer }

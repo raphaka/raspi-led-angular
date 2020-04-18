@@ -40,8 +40,8 @@ export class TabColorsComponentComponent implements OnInit {
     this.ser_colors.setColor(c);
   }
 
-  private deleteColor(id: String){
-    this.ser_colors.deleteColor(id);
+  private async deleteColor(id: String){
+    await this.ser_colors.deleteColor(id);
     this.refreshColors();
   }
 

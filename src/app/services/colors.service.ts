@@ -19,14 +19,13 @@ export class ColorsService {
     this.http.get(`${this.url}/set/colorhex/${c}`,{responseType: 'text' as 'text'}).subscribe(data => data);
   }
 
-  postColor(n: String, v: String){
+  async postColor(n: String, v: String): Promise<any>{
     let body = JSON.stringify({name:n, value:v.replace("#", "")});
     let headers = { 'Content-Type': 'application/json' }
-    this.http.post(`${this.url}/colors`, body, { headers, responseType: 'text' as 'text' }).subscribe(data => data);
+    this.http.post(`${this.url}/colors`, body, { headers, responseType: 'text' as 'text' }).toPromise();
   }
 
-  deleteColor(i: String){
-    //let myBody = JSON.stringify({id:i});
+  async deleteColor(i: String): Promise<any>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -34,8 +33,7 @@ export class ColorsService {
       body: JSON.stringify({id:i}),
       responseType: 'text' as 'text'
     };
-    //let myHeaders = new Htt{ 'Content-Type': 'application/json' }
-    this.http.delete(`${this.url}/colors`, httpOptions).subscribe(data => data);
+    return this.http.delete(`${this.url}/colors`, httpOptions).toPromise();
   }
 
 }

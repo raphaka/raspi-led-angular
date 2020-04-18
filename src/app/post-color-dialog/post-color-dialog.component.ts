@@ -19,8 +19,8 @@ export class PostColorDialogComponent implements OnInit {
 
   //todo validate if name is given
   //todo auto refresh color list
-  private postColor(n: String, v: String){
-    this.ser_colors.postColor(n, v);
+  private async postColor(n: String, v: String){
+    await this.ser_colors.postColor(n, v);
   }
 
   private setColor(c: String){
