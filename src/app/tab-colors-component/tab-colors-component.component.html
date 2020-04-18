@@ -18,7 +18,7 @@
         </span>
         <span class="icon-inside-tile">
 
-        <mat-icon id="delIcon" (click)="this.deleteColor(c.id)">delete</mat-icon>
+        <mat-icon id="delIcon" (click)="this.deleteColor(c.id);$event.stopPropagation()">delete</mat-icon>
         </span>
     </mat-grid-tile>
 </mat-grid-list>
