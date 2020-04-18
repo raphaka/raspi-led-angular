@@ -1,7 +1,10 @@
 #delIcon {
   color: getTextColor(c.red,c.green,c.blue);
-  right:0px;
 }
+
+/* #addIcon {
+  font-size: xx-large;
+} */
 
 .text-inside-tile {
   position: absolute;
