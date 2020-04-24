@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, retry, timeout } from 'rxjs/operators';
 import { throwError, TimeoutError } from 'rxjs';
 
+import { environment } from '../../environments/environment';
 import { Color } from '../shared/color';
 
 @Injectable({
@@ -12,7 +13,7 @@ import { Color } from '../shared/color';
 })
 export class ColorsService {
 
-  private url: string = "http://192.168.2.106:42069";
+  private url: string = environment.API_URL;
   constructor(private http: HttpClient) { }
 
   getColors(){
