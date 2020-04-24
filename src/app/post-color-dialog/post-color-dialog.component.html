@@ -1,19 +1,23 @@
 <h2 mat-dialog-title>Add a new color</h2>
 <mat-dialog-content>
-  <span [style.background]="color"
-    [cpToggle]="true"
-    [cpDialogDisplay]="'inline'"
-    [cpWidth]="250"
-    [cpAlphaChannel]="'disabled'"
-    [(colorPicker)]="color"
-    (colorPickerChange)="throttledSetColor(color)">
-  </span>
+  <form class="" action="index.html" method="post">
+
+    <span [style.background]="color"
+      [cpToggle]="true"
+      [cpDialogDisplay]="'inline'"
+      [cpWidth]="250"
+      [cpAlphaChannel]="'disabled'"
+      [(colorPicker)]="color"
+      (colorPickerChange)="throttledSetColor(color)">
+    </span>
 
     <mat-form-field appearance="fill" class="mat-form">
       <mat-label>Name</mat-label>
-      <input matInput [(ngModel)]="name">
+      <input matInput [(ngModel)]="name" type="text" name="name" required #colorname="ngModel">
     </mat-form-field>
     <br>
     <button mat-button [mat-dialog-close]="false">Cancel</button>
-    <button mat-button (click)="postColor(name, color)" [mat-dialog-close]="true">Save</button>
+    <button mat-button (click)="postColor(name, color)" [disabled]="colorname.invalid" [mat-dialog-close]="true">Save</button>
+
+  </form>
 </mat-dialog-content>
