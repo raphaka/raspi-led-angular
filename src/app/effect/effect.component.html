@@ -1,10 +1,13 @@
-<p>{{effect.name}}</p>
+<p>
+  {{effect.name}}
+  <button mat-raised-button color="primary" (click)="this.setEffect(effect.id)">Play</button>
+</p>
 <div class="scrollmenu">
 
   <a *ngFor="let e of effect.value; index as i"
   [ngStyle]="{'background-image': 'linear-gradient(to right,#' + this.getPreviousColor(i,e.fade) + ',#' + e.color +')'}"
   [style.color]=util.getTextColorHex(e.color)
-  [style.width]="0.01*e.duration+'%'"
+  [style.width]="0.001*this.scale*e.duration+'%'"
   [style.min-width.px]='100'
   ></a>
 </div>

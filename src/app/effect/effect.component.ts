@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { UtilService } from '../services/util.service';
+import { EffectsService } from '../services/effects.service';
 import { Effect } from '../shared/effect';
 
 @Component({
@@ -11,10 +12,15 @@ import { Effect } from '../shared/effect';
 export class EffectComponent implements OnInit {
 
   @Input() effect:Effect
+  scale: number = 10; // seconds of effect displayed within 100% width
 
-  constructor(private util: UtilService) { }
+  constructor(private ser_effects: EffectsService, private util: UtilService) { }
 
   ngOnInit(): void {}
+
+  private setEffect(id: number){
+      this.ser_effects.setEffect(id);
+  }
 
   // color of the prevoius element in effect is used as start color for linear gradient
   // when no gradient should be visible, the current color is returned
