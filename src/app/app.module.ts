@@ -19,13 +19,15 @@ import { TabColorsComponentComponent } from './tab-colors-component/tab-colors-c
 import { TabEffectsComponentComponent } from './tab-effects-component/tab-effects-component.component';
 import { ColorsService } from './services/colors.service';
 import { PostColorDialogComponent } from './post-color-dialog/post-color-dialog.component';
+import { EffectComponent } from './effect/effect.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TabColorsComponentComponent,
     TabEffectsComponentComponent,
-    PostColorDialogComponent
+    PostColorDialogComponent,
+    EffectComponent
   ],
   entryComponents: [
     PostColorDialogComponent
