@@ -2,6 +2,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { Color } from '../shared/color';
 import { ColorsService } from '../services/colors.service';
+import { UtilService } from '../services/util.service';
 import { PostColorDialogComponent } from '../post-color-dialog/post-color-dialog.component';
 
 @Component({
@@ -14,7 +15,7 @@ export class TabColorsComponentComponent implements OnInit {
   breakpoint: number;
   colors: Color[];
 
-  constructor(private ser_colors: ColorsService, public dialog: MatDialog) {}
+  constructor(private ser_colors: ColorsService, private util: UtilService, public dialog: MatDialog) {}
 
   onResize(event) {
     this.breakpoint = (event.target.innerWidth <= 600) ? 2 : 6;
@@ -54,21 +55,6 @@ export class TabColorsComponentComponent implements OnInit {
 
   private refreshColors() {
     this.ser_colors.getColors().subscribe(data => this.colors = this.getColorsFromArray(data));
-  }
-
-  public getTextColor(r, g, b): string {
-    const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-    if (brightness < 123) {
-      return 'rgb(255,255,255)';
-    } else  {
-      return 'rgb(0,0,0)';
-    }
-  }
-
-  public getColor(red, green, blue): string {
-    return 'rgb(' + red +
-      ',' + green +
-      ',' + blue + ')';
   }
 
 }

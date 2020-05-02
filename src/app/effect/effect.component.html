@@ -1,6 +1,10 @@
 <p>{{effect.name}}</p>
-<div *ngFor="let e of effect.value" >
-  {{e.color}}<br>
-  {{e.duration}}<br>
-  {{e.fade}}
+<div class="scrollmenu">
+
+  <a *ngFor="let e of effect.value; index as i"
+  [ngStyle]="{'background-image': 'linear-gradient(to right,#' + this.getPreviousColor(i,e.fade) + ',#' + e.color +')'}"
+  [style.color]=util.getTextColorHex(e.color)
+  [style.width]="0.01*e.duration+'%'"
+  [style.min-width.px]='100'
+  ></a>
 </div>

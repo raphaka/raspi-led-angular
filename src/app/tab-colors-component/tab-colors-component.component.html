@@ -1,12 +1,12 @@
 <!--p>tab-colors-component works!</p-->
 <mat-grid-list [cols]="breakpoint" rowHeight="1:1">
-  <span>Create a new color by clicking the '+' tile. Edit a color by creating a new one with the same name.</span>
+  <p>Create a new color by clicking the '+' tile. Edit a color by creating a new one with the same name.</p>
     <mat-grid-tile [style.background]="'lightgrey'" (click)="this.postColorDialog()">
       <mat-icon id="addIcon">add</mat-icon>
     </mat-grid-tile>
     <mat-grid-tile *ngFor="let c of colors"
         [style.background]="'#'+c.value"
-        [style.color]=getTextColor(c.red,c.green,c.blue)
+        [style.color]=util.getTextColor(c.red,c.green,c.blue)
         (window:resize)="onResize($event)"
         (click)="this.setColor(c.value)">
         <mat-grid-tile-header>{{c.name | uppercase}}</mat-grid-tile-header>
