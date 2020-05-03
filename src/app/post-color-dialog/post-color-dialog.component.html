@@ -17,7 +17,7 @@
     </mat-form-field>
     <br>
     <button mat-button [mat-dialog-close]="false">Cancel</button>
-    <button mat-button (click)="postColor(name, color)" [disabled]="colorname.invalid" [mat-dialog-close]="true">Save</button>
+    <button mat-button [disabled]="colorname.invalid" [mat-dialog-close]="[name,color]">Save</button>
 
   </form>
 </mat-dialog-content>

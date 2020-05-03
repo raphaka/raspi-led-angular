@@ -37,7 +37,7 @@ export class ColorsService {
   async postColor(n: String, v: String): Promise<any>{
     let body = JSON.stringify({name:n, value:v.replace("#", "")});
     let headers = { 'Content-Type': 'application/json' }
-    this.http.post(`${this.url}/colors`, body, { headers, responseType: 'text' as 'text' })
+    return this.http.post(`${this.url}/colors`, body, { headers, responseType: 'text' as 'text' })
     .pipe(
       timeout(3000),
       retry(3),

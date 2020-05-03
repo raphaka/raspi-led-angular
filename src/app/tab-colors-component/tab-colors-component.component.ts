@@ -48,8 +48,11 @@ export class TabColorsComponentComponent implements OnInit {
 
   private postColorDialog(){
     let dialogRef = this.dialog.open(PostColorDialogComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      this.refreshColors();
+    dialogRef.afterClosed().subscribe(async result => {
+      if(result){
+        await this.ser_colors.postColor(result[0], result[1]);
+        this.refreshColors();
+      }
     });
   }
 
