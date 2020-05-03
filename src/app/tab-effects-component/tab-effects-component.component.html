@@ -1,2 +1,4 @@
-<app-effect *ngFor="let e of effects" [effect]="e">
-</app-effect>
+<div *ngFor="let e of effects; last as last">
+  <app-effect [effect]="e"></app-effect>
+  <mat-divider *ngIf="!last"></mat-divider>
+</div>

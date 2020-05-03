@@ -13,6 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 import { ColorPickerModule } from 'ngx-color-picker';
 
 import { TabColorsComponentComponent } from './tab-colors-component/tab-colors-component.component';
@@ -43,6 +44,7 @@ import { EffectComponent } from './effect/effect.component';
     MatIconModule,
     MatDialogModule,
     MatButtonModule,
+    MatDividerModule,
     FormsModule,
     ColorPickerModule
   ],
