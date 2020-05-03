@@ -22,6 +22,11 @@ export class EffectComponent implements OnInit {
       this.ser_effects.setEffect(id);
   }
 
+  private async deleteEffect(id: String){
+    await this.ser_effects.deleteEffect(id);
+    // TODO effects tab component refresh
+  }
+
   // color of the prevoius element in effect is used as start color for linear gradient
   // when no gradient should be visible, the current color is returned
   private getPreviousColor(i: number,fade: boolean){

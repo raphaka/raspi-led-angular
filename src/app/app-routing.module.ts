@@ -5,6 +5,7 @@ import { TabEffectsComponentComponent } from './tab-effects-component/tab-effect
 
 
 const routes: Routes = [
+  { path: '', redirectTo: 'colors', pathMatch: 'full'},
   { path: 'colors', component: TabColorsComponentComponent },
   { path: 'effects', component: TabEffectsComponentComponent }
 ];
