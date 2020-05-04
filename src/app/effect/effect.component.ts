@@ -15,7 +15,7 @@ import { NewEffectDialogComponent } from '../new-effect-dialog/new-effect-dialog
 export class EffectComponent implements OnInit {
 
   @Input() effect:Effect
-  scale: number = 10; // seconds of effect displayed within 100% width
+  @Input() scale: number = 10; // seconds of effect displayed within 100% width
 
   constructor(private ser_effects: EffectsService, private util: UtilService,  public dialog: MatDialog) { }
 

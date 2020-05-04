@@ -13,6 +13,7 @@ import { NewEffectDialogComponent } from '../new-effect-dialog/new-effect-dialog
 export class TabEffectsComponentComponent implements OnInit {
 
   effects: Effect[];
+  scale: number = 10;
   constructor(private ser_effects: EffectsService, public dialog: MatDialog) { }
 
   ngOnInit() {

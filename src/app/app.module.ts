@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
 import { ColorPickerModule } from 'ngx-color-picker';
 
 import { TabColorsComponentComponent } from './tab-colors-component/tab-colors-component.component';
@@ -50,6 +51,7 @@ import { NewEffectDialogComponent } from './new-effect-dialog/new-effect-dialog.
     MatButtonModule,
     MatDividerModule,
     MatSlideToggleModule,
+    MatSliderModule,
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
