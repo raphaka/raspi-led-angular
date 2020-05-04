@@ -38,6 +38,11 @@ export class EffectComponent implements OnInit {
     if(effect.id){  //refresh UI when it's a new effect to get its id
       this.updated.emit();
     }
+    this.effect.edited = false;
+  }
+
+  private refreshEffects(){
+    this.updated.emit();
   }
 
   private addElement(){
