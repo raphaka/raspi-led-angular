@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import * as _ from 'underscore';
 
 import { Effect } from '../shared/effect';
 import { EffectsService } from '../services/effects.service';
+import { SettingsService, Settings } from '../services/settings.service';
 import { NewEffectDialogComponent } from '../new-effect-dialog/new-effect-dialog.component';
+
 
 @Component({
   selector: 'app-tab-effects-component',
@@ -14,11 +17,21 @@ export class TabEffectsComponentComponent implements OnInit {
 
   effects: Effect[];
   scale: number = 10;
-  constructor(private ser_effects: EffectsService, public dialog: MatDialog) { }
+
+  @ViewChild('speed_slider')speed_slider;
+
+  constructor(private ser_effects: EffectsService, private ser_settings:SettingsService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.ser_effects.getEffects().subscribe(data => this.effects = data);
+    this.ser_settings.getSettings().subscribe(data => this.speed_slider.value = data.effect_speed*100);
   }
+
+  private setSpeed(speed: number){
+    this.ser_settings.putSettings({'effect_speed': speed/100});
+  }
+
+  private throttledSetSpeed = _.throttle(data => this.setSpeed(data), 200, {});
 
   private addEffect(){
     const dialogConfig = new MatDialogConfig();
