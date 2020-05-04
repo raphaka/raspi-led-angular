@@ -7,7 +7,7 @@
     thumbLabel min="1" max="1000" #speed_slider>Speed</mat-slider>
 </div>
 <div *ngFor="let e of effects; last as last">
-  <app-effect [effect]="e" [scale]="scale"></app-effect>
+  <app-effect [effect]="e" [scale]="scale" (updated)="refreshEffects()"></app-effect>
   <mat-divider></mat-divider>
 </div>
 <br>

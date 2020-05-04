@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { UtilService } from '../services/util.service';
@@ -16,6 +16,7 @@ export class EffectComponent implements OnInit {
 
   @Input() effect:Effect
   @Input() scale: number = 10; // seconds of effect displayed within 100% width
+  @Output() updated = new EventEmitter();
 
   constructor(private ser_effects: EffectsService, private util: UtilService,  public dialog: MatDialog) { }
 
@@ -26,13 +27,15 @@ export class EffectComponent implements OnInit {
   }
 
   private async deleteEffect(id: String){
-    await this.ser_effects.deleteEffect(id);
-    // TODO effects tab component refresh
+    if (id != undefined){
+      await this.ser_effects.deleteEffect(id);
+    }
+    this.updated.emit();
   }
 
   private async postEffect(effect: Effect){
     await this.ser_effects.postEffect(effect);
-    effect.edited = false;
+    this.updated.emit();
   }
 
   private addElement(){
@@ -43,7 +46,6 @@ export class EffectComponent implements OnInit {
     let dialogRef = this.dialog.open(NewEffectDialogComponent,dialogConfig);
     dialogRef.afterClosed().subscribe(async result => {
       if(result){
-        console.log(result);
         this.effect.value.push( {"color":result[0].replace("#", ""),"duration":result[1],"fade":result[2]} );
         this.effect.edited = true;
       }

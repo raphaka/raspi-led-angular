@@ -23,7 +23,7 @@ export class TabEffectsComponentComponent implements OnInit {
   constructor(private ser_effects: EffectsService, private ser_settings:SettingsService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.ser_effects.getEffects().subscribe(data => this.effects = data);
+    this.refreshEffects();
     this.ser_settings.getSettings().subscribe(data => this.speed_slider.value = data.effect_speed*100);
   }
 
@@ -41,12 +41,15 @@ export class TabEffectsComponentComponent implements OnInit {
     let dialogRef = this.dialog.open(NewEffectDialogComponent,dialogConfig);
     dialogRef.afterClosed().subscribe(async result => {
       if(result){
-        console.log(result);
         this.effects.push(new Effect(
           result[0], [{"color":result[1].replace("#", ""),"duration":result[2],"fade":result[3]}],true
         ));
       }
     });
+  }
+
+  private refreshEffects(){
+    this.ser_effects.getEffects().subscribe(data => this.effects = data);
   }
 
 }
