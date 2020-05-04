@@ -4,7 +4,6 @@
   <button mat-raised-button color="primary" (click)="this.deleteEffect(effect.id)">Delete</button>
 </p>
 <div class="scrollmenu">
-
   <a *ngFor="let e of effect.value; index as i"
   [ngStyle]="{'background-image': 'linear-gradient(to right,#' + this.getPreviousColor(i,e.fade) + ',#' + e.color +')'}"
   [style.color]=util.getTextColorHex(e.color)

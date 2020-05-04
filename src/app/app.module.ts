@@ -4,16 +4,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule, MatGridList } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ColorPickerModule } from 'ngx-color-picker';
 
 import { TabColorsComponentComponent } from './tab-colors-component/tab-colors-component.component';
@@ -21,6 +23,7 @@ import { TabEffectsComponentComponent } from './tab-effects-component/tab-effect
 import { ColorsService } from './services/colors.service';
 import { PostColorDialogComponent } from './post-color-dialog/post-color-dialog.component';
 import { EffectComponent } from './effect/effect.component';
+import { NewEffectDialogComponent } from './new-effect-dialog/new-effect-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,8 @@ import { EffectComponent } from './effect/effect.component';
     TabColorsComponentComponent,
     TabEffectsComponentComponent,
     PostColorDialogComponent,
-    EffectComponent
+    EffectComponent,
+    NewEffectDialogComponent
   ],
   entryComponents: [
     PostColorDialogComponent
@@ -45,7 +49,10 @@ import { EffectComponent } from './effect/effect.component';
     MatDialogModule,
     MatButtonModule,
     MatDividerModule,
+    MatSlideToggleModule,
+    MatFormFieldModule,
     FormsModule,
+    ReactiveFormsModule,
     ColorPickerModule
   ],
   providers: [ColorsService],
