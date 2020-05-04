@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { Effect } from '../shared/effect';
 import { EffectsService } from '../services/effects.service';
@@ -20,16 +20,19 @@ export class TabEffectsComponentComponent implements OnInit {
   }
 
   private addEffect(){
-    let dialogRef = this.dialog.open(NewEffectDialogComponent);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+        newEffect: true
+    };
+    let dialogRef = this.dialog.open(NewEffectDialogComponent,dialogConfig);
     dialogRef.afterClosed().subscribe(async result => {
       if(result){
         console.log(result);
         this.effects.push(new Effect(
-          result[0], [{"color":result[1].replace("#", ""),"duration":result[2],"fade":result[3]}]
+          result[0], [{"color":result[1].replace("#", ""),"duration":result[2],"fade":result[3]}],true
         ));
       }
     });
-
   }
 
 }

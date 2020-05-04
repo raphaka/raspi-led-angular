@@ -1,8 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 import { UtilService } from '../services/util.service';
 import { EffectsService } from '../services/effects.service';
 import { Effect } from '../shared/effect';
+import { NewEffectDialogComponent } from '../new-effect-dialog/new-effect-dialog.component';
+
 
 @Component({
   selector: 'app-effect',
@@ -14,7 +17,7 @@ export class EffectComponent implements OnInit {
   @Input() effect:Effect
   scale: number = 10; // seconds of effect displayed within 100% width
 
-  constructor(private ser_effects: EffectsService, private util: UtilService) { }
+  constructor(private ser_effects: EffectsService, private util: UtilService,  public dialog: MatDialog) { }
 
   ngOnInit(): void {}
 
@@ -25,6 +28,26 @@ export class EffectComponent implements OnInit {
   private async deleteEffect(id: String){
     await this.ser_effects.deleteEffect(id);
     // TODO effects tab component refresh
+  }
+
+  private async postEffect(effect: Effect){
+    await this.ser_effects.postEffect(effect);
+    effect.edited = false;
+  }
+
+  private addElement(){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+        newEffect: false
+    };
+    let dialogRef = this.dialog.open(NewEffectDialogComponent,dialogConfig);
+    dialogRef.afterClosed().subscribe(async result => {
+      if(result){
+        console.log(result);
+        this.effect.value.push( {"color":result[0].replace("#", ""),"duration":result[1],"fade":result[2]} );
+        this.effect.edited = true;
+      }
+    });
   }
 
   // color of the prevoius element in effect is used as start color for linear gradient

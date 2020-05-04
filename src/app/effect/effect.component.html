@@ -1,7 +1,9 @@
 <p>
-  <span>{{effect.name}}</span>
+  <button mat-raised-button color="accent" *ngIf="effect.edited"  (click)="this.postEffect(effect)">Save</button>
+   <span>{{effect.name}}</span>
   <button mat-raised-button color="primary" (click)="this.setEffect(effect.id)">Play</button>
-  <button mat-raised-button color="primary" (click)="this.deleteEffect(effect.id)">Delete</button>
+  <button mat-raised-button color="primary" (click)="this.addElement()">Add element</button>
+  <button mat-raised-button color="warn" (click)="this.deleteEffect(effect.id)">Delete</button>
 </p>
 <div class="scrollmenu">
   <a *ngFor="let e of effect.value; index as i"

@@ -34,9 +34,8 @@ export class EffectsService {
     ).subscribe(data => data);
   }
 
-  //TODO: parameter: object/list
-  async postEffect(n: String, v: String): Promise<any>{
-    let body = JSON.stringify({name:n, value:v.replace("#", "")});
+  async postEffect(effect: Effect): Promise<any>{
+    let body = JSON.stringify({name:effect.name, value:effect.value});
     let headers = { 'Content-Type': 'application/json' }
     this.http.post(`${this.url}/effects`, body, { headers, responseType: 'text' as 'text' })
     .pipe(
