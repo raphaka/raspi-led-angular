@@ -7,7 +7,7 @@ div.scrollmenu {
 
 div.scrollmenu a {
   display: inline-block;
-  text-align: center;
+  /* text-align: center; */
   height: 80px;
   box-sizing: border-box;
   border-style: solid;
@@ -25,4 +25,16 @@ p * {
 
 p span {
   font-size: 24px;
+}
+
+.mat-icon { cursor: pointer }
+
+#left {
+  font-size: x-large;
+  float: left;
+}
+
+#right {
+  font-size: x-large;
+  float: right;
 }

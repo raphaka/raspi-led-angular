@@ -27,7 +27,7 @@ export class EffectComponent implements OnInit {
   }
 
   private async deleteEffect(id: String){
-    if (id != undefined){
+    if (id != undefined){ //effect does not yet exist in backend so it will vanish when refreshing UI
       await this.ser_effects.deleteEffect(id);
     }
     this.updated.emit();
@@ -35,7 +35,9 @@ export class EffectComponent implements OnInit {
 
   private async postEffect(effect: Effect){
     await this.ser_effects.postEffect(effect);
-    this.updated.emit();
+    if(effect.id){  //refresh UI when it's a new effect to get its id
+      this.updated.emit();
+    }
   }
 
   private addElement(){
@@ -50,6 +52,20 @@ export class EffectComponent implements OnInit {
         this.effect.edited = true;
       }
     });
+  }
+
+  private moveElementLeft(i: number){
+    let tmp = this.effect.value[i];
+    this.effect.value[i] = this.effect.value[i-1];
+    this.effect.value[i-1] = tmp;
+    this.effect.edited = true;
+  }
+
+  private moveElementRight(i: number){
+    let tmp = this.effect.value[i];
+    this.effect.value[i] = this.effect.value[i+1];
+    this.effect.value[i+1] = tmp;
+    this.effect.edited = true;
   }
 
   // color of the prevoius element in effect is used as start color for linear gradient

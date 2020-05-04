@@ -6,10 +6,16 @@
   <button mat-raised-button color="warn" (click)="this.deleteEffect(effect.id)">Delete</button>
 </p>
 <div class="scrollmenu">
-  <a *ngFor="let e of effect.value; index as i"
+  <a *ngFor="let e of effect.value; index as i; first as first; last as last"
   [ngStyle]="{'background-image': 'linear-gradient(to right,#' + this.getPreviousColor(i,e.fade) + ',#' + e.color +')'}"
-  [style.color]=util.getTextColorHex(e.color)
   [style.width]="0.001*this.scale*e.duration+'%'"
   [style.min-width.px]='100'
-  ></a>
+  >
+  <mat-icon id="left" *ngIf="!first"
+    [style.color]="util.getTextColorHex(this.getPreviousColor(i,e.fade))"
+    (click)="this.moveElementLeft(i)">chevron_left</mat-icon>
+  <mat-icon id="right" *ngIf="!last"
+    [style.color]="util.getTextColorHex(e.color)"
+    (click)="this.moveElementRight(i)">chevron_right</mat-icon>
+  </a>
 </div>
