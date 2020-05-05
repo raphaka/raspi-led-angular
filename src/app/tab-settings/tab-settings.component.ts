@@ -65,6 +65,19 @@ export class TabSettingsComponent implements OnInit {
 
   }
 
+  private saveAll(){
+    this.ser_settings.putSettings({
+      'fade_frequency': this.frequencyControl.value,
+      'log_file': this.logfilepath,
+      'pin_blue': this.pinbControl.value,
+      'pin_green': this.pinbControl.value,
+      'pin_red': this.pinrControl.value,
+      'pins_enabled': this.pins_enabled,
+      'socket_timeout': this.sockTO_Control.value,
+      'udp_port': this.udpPortControl.value
+    });
+  }
+
   private setSpeed(){
     if(this.speedControl.value > 0){
       this.ser_settings.putSettings({'effect_speed': this.speedControl.value/100});

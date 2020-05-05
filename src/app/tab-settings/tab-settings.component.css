@@ -1,7 +1,35 @@
+div.category{
+  text-align: center;
+}
+
 div.category * {
-  margin-left: 10px;
+  text-align: center;
+}
+
+div table{
+  text-align: center;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 mat-slider {
-  width: 255px;
+  width: 300px;
+}
+
+[mat-raised-button] {
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 6px;
+}
+
+[lcol]{
+  width: 200px;
+}
+
+[miWide]{
+  width: 300px;
+}
+
+[miNarrow]{
+  width: 100px;
 }
