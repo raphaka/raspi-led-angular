@@ -1,16 +1,114 @@
 <div class="category">
-  <span>Brightness</span>
-  <mat-slider (input)="this.throttledSetBright($event.value)"
-    thumbLabel min="1" max="255" #bright_slider>Brightness</mat-slider>
-  <br>
-  <span>Effect speed</span>
-  <mat-form-field appearance="fill" class="duration">
-    <mat-label>in percent %</mat-label>
-    <input matInput type="number" name="speed"
-    step="1" min=1
-    [formControl]="speedControl"
-    (change)="this.throttledSetSpeed($event)"
-    #speed_input>
-    <mat-error *ngIf="speedControl.invalid" >Min effect speed: 1</mat-error>
-  </mat-form-field>
+  <h3>Color/Effect adjustment</h3>
+  <table>
+    <tr>
+      <td lcol>Brightness</td>
+      <td><mat-slider (input)="this.throttledSetBright($event.value)"
+        thumbLabel min="1" max="255" #bright_slider>Brightness</mat-slider></td>
+    </tr>
+    <tr>
+      <td lcol>Contrast</td>
+      <td><mat-slider (input)="this.throttledSetContrast($event.value)"
+        thumbLabel min=0.01 step=0.01 max=3 #contrast_slider>Contrast</mat-slider></td>
+    </tr>
+    <tr>
+      <td lcol>Effect speed</td>
+      <td><mat-form-field appearance="fill" miWide>
+        <mat-label>in percent %</mat-label>
+        <input matInput type="number" name="speed"
+        step="1" min=1
+        [formControl]="speedControl"
+        (change)="this.throttledSetSpeed($event)"
+        #speed_input>
+        <mat-error *ngIf="speedControl.invalid" >Min effect speed: 1%</mat-error>
+      </mat-form-field></td>
+    </tr>
+  </table>
+</div>
+
+<div class="category">
+  <h3>Hardware adjustment</h3>
+  <table>
+    <tr>
+      <td lcol>Fade frequency</td>
+      <td><mat-form-field appearance="fill" miWide>
+        <mat-label>in hz</mat-label>
+        <input matInput type="number" name="frequency"
+        step="1" min=1
+        [formControl]="frequencyControl"
+        #frequency_input>
+        <mat-error *ngIf="frequencyControl.invalid" >Min frequency: 1 hz</mat-error>
+      </mat-form-field></td>
+    </tr>
+    <tr>
+      <td lcol>Pins <mat-slide-toggle name="pins_enabled" [(ngModel)]="pins_enabled"></mat-slide-toggle></td>
+      <td><mat-form-field appearance="fill" miNarrow>
+        <mat-label>Red</mat-label>
+        <input matInput type="number" name="pinr"
+        step="1" min=1
+        [disabled]="!this.pins_enabled"
+        [formControl]="pinrControl"
+        #pinr_input>
+        <mat-error *ngIf="pinrControl.invalid"></mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" miNarrow>
+        <mat-label>Green</mat-label>
+        <input matInput type="number" name="ping"
+        step="1" min=1
+        [disabled]="!this.pins_enabled"
+        [formControl]="pingControl"
+        #ping_input>
+        <mat-error *ngIf="pingControl.invalid"></mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="fill" miNarrow>
+        <mat-label>Blue</mat-label>
+        <input matInput type="number" name="pinb"
+        step="1" min=1
+        [disabled]="!this.pins_enabled"
+        [formControl]="pinbControl"
+        #pinb_input>
+        <mat-error *ngIf="pinbControl.invalid"></mat-error>
+      </mat-form-field></td>
+    </tr>
+  </table>
+</div>
+
+<div class="category">
+  <h3>Server settings</h3>
+  <table>
+    <tr>
+      <td lcol>Log file</td>
+      <td><mat-form-field appearance="fill" miWide>
+        <mat-label>path</mat-label>
+        <input matInput [(ngModel)]="logfilepath" type="text" name="name" required #lfp="ngModel">
+      </mat-form-field></td>
+    </tr>
+    <tr>
+      <td lcol>UDP port</td>
+      <td><mat-form-field appearance="fill" miWide>
+        <mat-label>port number</mat-label>
+        <input matInput type="number" name="udpPort"
+        step="1" min=1024
+        [formControl]="udpPortControl"
+        #udpPort_input>
+        <mat-error *ngIf="udpPortControl.invalid" >Min: 1024</mat-error>
+      </mat-form-field></td>
+    </tr>
+    <tr>
+      <td lcol>Socket timeout</td>
+      <td><mat-form-field appearance="fill" miWide>
+          <mat-label>in s</mat-label>
+          <input matInput type="number" name="socket_timeout"
+          step="1" min=0
+          [formControl]="sockTO_Control"
+          #sockTO_input>
+          <mat-error *ngIf="sockTO_Control.invalid" >Min timeout: 0.1s</mat-error>
+        </mat-form-field></td>
+    </tr>
+  </table>
+</div>
+
+<div class="category">
+  <button mat-raised-button color="basic"(click)="this.refreshSettings()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="this.saveAll()">Save</button>
 </div>
