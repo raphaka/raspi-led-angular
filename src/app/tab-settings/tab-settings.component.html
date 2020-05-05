@@ -24,8 +24,13 @@
     <input matInput type="number" name="frequency"
     step="1" min=1
     [formControl]="frequencyControl"
-    (change)="this.throttledSetFrequency($event)"
-    #speed_input>
+    #frequency_input>
     <mat-error *ngIf="frequencyControl.invalid" >Min frequency: 1 hz</mat-error>
+  </mat-form-field>
+  <br>
+  <span>Log file</span>
+  <mat-form-field appearance="fill">
+    <mat-label>path</mat-label>
+    <input matInput [(ngModel)]="logfilepath" type="text" name="name" required #lfp="ngModel">
   </mat-form-field>
 </div>

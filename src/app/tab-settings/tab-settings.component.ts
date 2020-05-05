@@ -12,6 +12,7 @@ import { SettingsService, Settings } from '../services/settings.service';
 export class TabSettingsComponent implements OnInit {
 
   options: FormGroup;
+  logfilepath: String;
   speedControl = new FormControl(Validators.min(1));
   frequencyControl = new FormControl(Validators.min(1));
 
@@ -37,6 +38,7 @@ export class TabSettingsComponent implements OnInit {
       this.speedControl.setValue(data.effect_speed * 100);
       this.frequencyControl.setValue(data.fade_frequency);
       this.contrast_slider.value = data.contrast_adjustment;
+      this.logfilepath = data.log_file;
     });
 
   }
@@ -61,18 +63,9 @@ export class TabSettingsComponent implements OnInit {
 
   private throttledSetContrast = _.throttle(data => this.setContrast(data), 200, {});
 
-  private setFrequency(){
-    if(this.frequencyControl.value > 0){
-      this.ser_settings.putSettings({'fade_frequency': this.frequencyControl.value});
-    }
-  }
-
-  private throttledSetFrequency = _.throttle(data => this.setFrequency(), 200, {});
 }
 
 // export interface Settings {
-//     fade_frequency?: number,
-//     log_file?: String,
 //     pin_blue?: number,
 //     pin_green?: number,
 //     pin_red?: number,
