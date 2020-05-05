@@ -1,0 +1,16 @@
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    opacity: 1;
+}
+
+.duration{
+    width: 150px;
+}
+
+.fade{
+  margin-left: 10px;
+}
+
+.mat-form{
+  width:252px;
+}

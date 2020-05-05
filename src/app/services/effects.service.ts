@@ -6,18 +6,18 @@ import { catchError, retry, timeout } from 'rxjs/operators';
 import { throwError, TimeoutError } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { Color } from '../shared/color';
+import { Effect } from '../shared/effect';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ColorsService {
+export class EffectsService {
 
   private url: string = environment.API_URL;
   constructor(private http: HttpClient) { }
 
-  getColors(){
-    return this.http.get<Color[]>(`${this.url}/colors`)
+  getEffects(){
+    return this.http.get<Effect[]>(`${this.url}/effects`)
     .pipe(
       timeout(3000),
       retry(3),
@@ -25,8 +25,8 @@ export class ColorsService {
     );
   }
 
-  setColor(c: String){
-    this.http.get(`${this.url}/set/colorhex/${c}`,{responseType: 'text' as 'text'})
+  setEffect(c: Number){
+    this.http.get(`${this.url}/set/effect/${c}`,{responseType: 'text' as 'text'})
     .pipe(
       timeout(3000),
       retry(3),
@@ -34,10 +34,10 @@ export class ColorsService {
     ).subscribe(data => data);
   }
 
-  async postColor(n: String, v: String): Promise<any>{
-    let body = JSON.stringify({name:n, value:v.replace("#", "")});
+  async postEffect(effect: Effect): Promise<any>{
+    let body = JSON.stringify({name:effect.name, value:effect.value});
     let headers = { 'Content-Type': 'application/json' }
-    return this.http.post(`${this.url}/colors`, body, { headers, responseType: 'text' as 'text' })
+    return this.http.post(`${this.url}/effects`, body, { headers, responseType: 'text' as 'text' })
     .pipe(
       timeout(3000),
       retry(3),
@@ -45,7 +45,7 @@ export class ColorsService {
     ).toPromise();
   }
 
-  async deleteColor(i: String): Promise<any>{
+  async deleteEffect(i: String): Promise<any>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -53,7 +53,7 @@ export class ColorsService {
       body: JSON.stringify({id:i}),
       responseType: 'text' as 'text'
     };
-    return this.http.delete(`${this.url}/colors`, httpOptions)
+    return this.http.delete(`${this.url}/effects`, httpOptions)
       .pipe(
         timeout(3000),
         retry(3),
@@ -75,5 +75,6 @@ export class ColorsService {
     return throwError(
       'Something bad happened; please try again later.');
   };
+
 
 }

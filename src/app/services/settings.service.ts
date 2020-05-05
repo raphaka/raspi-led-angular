@@ -6,18 +6,17 @@ import { catchError, retry, timeout } from 'rxjs/operators';
 import { throwError, TimeoutError } from 'rxjs';
 
 import { environment } from '../../environments/environment';
-import { Color } from '../shared/color';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ColorsService {
+export class SettingsService {
 
   private url: string = environment.API_URL;
   constructor(private http: HttpClient) { }
 
-  getColors(){
-    return this.http.get<Color[]>(`${this.url}/colors`)
+  getSettings(){
+    return this.http.get<Settings>(`${this.url}/settings`)
     .pipe(
       timeout(3000),
       retry(3),
@@ -25,40 +24,15 @@ export class ColorsService {
     );
   }
 
-  setColor(c: String){
-    this.http.get(`${this.url}/set/colorhex/${c}`,{responseType: 'text' as 'text'})
-    .pipe(
-      timeout(3000),
-      retry(3),
-      catchError(this.handleError)
-    ).subscribe(data => data);
-  }
-
-  async postColor(n: String, v: String): Promise<any>{
-    let body = JSON.stringify({name:n, value:v.replace("#", "")});
-    let headers = { 'Content-Type': 'application/json' }
-    return this.http.post(`${this.url}/colors`, body, { headers, responseType: 'text' as 'text' })
+  async putSettings(data: Settings){
+    let body = JSON.stringify(data);
+    let headers = { 'Content-Type': 'application/json' };
+    return this.http.put(`${this.url}/settings`, body, { headers, responseType: 'text' as 'text' })
     .pipe(
       timeout(3000),
       retry(3),
       catchError(this.handleError)
     ).toPromise();
-  }
-
-  async deleteColor(i: String): Promise<any>{
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json'
-      }),
-      body: JSON.stringify({id:i}),
-      responseType: 'text' as 'text'
-    };
-    return this.http.delete(`${this.url}/colors`, httpOptions)
-      .pipe(
-        timeout(3000),
-        retry(3),
-        catchError(this.handleError)
-      ).toPromise();
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -76,4 +50,18 @@ export class ColorsService {
       'Something bad happened; please try again later.');
   };
 
+}
+
+export interface Settings {
+    brightness_maximum?: number,
+    contrast_adjustment?: number,
+    effect_speed?: number,
+    fade_frequency?: number,
+    log_file?: String,
+    pin_blue?: number,
+    pin_green?: number,
+    pin_red?: number,
+    pins_enabled?: boolean,
+    socket_timeout?: number,
+    udp_port?: number
 }

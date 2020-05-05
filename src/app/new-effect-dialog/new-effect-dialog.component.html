@@ -1,0 +1,35 @@
+<h2 mat-dialog-title *ngIf="this.newEffect" >Add a new effect</h2>
+<h2 mat-dialog-title *ngIf="!this.newEffect" >Add a new element</h2>
+
+<mat-dialog-content>
+  <form>
+    <mat-form-field *ngIf="this.newEffect" appearance="fill" class="mat-form">
+      <mat-label>Effect name</mat-label>
+      <input matInput [(ngModel)]="effectname" type="text" name="effectname" required #colorname="ngModel">
+    </mat-form-field>
+    <span *ngIf="this.newEffect"><br>First Element:</span>
+    <span [style.background]="color"
+      [cpToggle]="true"
+      [cpDialogDisplay]="'inline'"
+      [cpWidth]="250"
+      [cpAlphaChannel]="'disabled'"
+      [(colorPicker)]="color">
+    </span>
+    <mat-form-field appearance="fill" class="duration">
+      <mat-label>Duration</mat-label>
+      <input matInput type="number" name="duration" step="100" [formControl]="durationControl" min=0>
+      <mat-error *ngIf="durationControl.invalid" >Min duration: 10ms</mat-error>
+    </mat-form-field>
+    <mat-slide-toggle name="fade" [(ngModel)]="fade" class="fade">Fade</mat-slide-toggle>
+    <br>
+    <button mat-button [mat-dialog-close]="false">Cancel</button>
+    <button mat-button *ngIf="this.newEffect"
+      [disabled]="durationControl.invalid || effectname == undefined || effectname == ''"
+      [mat-dialog-close]="[effectname,color,durationControl.value,fade]">Save
+    </button>
+    <button mat-button *ngIf="!this.newEffect"
+      [disabled]="durationControl.invalid"
+      [mat-dialog-close]="[color,durationControl.value,fade]">Save
+    </button>
+  </form>
+</mat-dialog-content>

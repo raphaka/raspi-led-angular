@@ -20,6 +20,10 @@ export class AppComponent implements OnInit{
             label: 'Effects',
             path: './effects',
             index: 1
+        }, {
+            label: 'Settings',
+            path: './settings',
+            index: 2
         }
     ];
   }
