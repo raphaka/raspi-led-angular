@@ -9,3 +9,7 @@ button {
 mat-slider {
   width: 300px;
 }
+
+[mat-raised-button] {
+  margin-bottom: 6px;
+}
