@@ -1,1 +1,8 @@
 H1 { text-align: center }
+
+nav{
+  z-index: 999;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+}
