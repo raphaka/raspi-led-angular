@@ -6,6 +6,12 @@ div.category * {
   text-align: center;
 }
 
+div.chart {
+  max-width: 500px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
 div table{
   text-align: center;
   margin-left:auto;
@@ -13,7 +19,7 @@ div table{
 }
 
 mat-slider {
-  width: 300px;
+  width: 280px;
 }
 
 [mat-raised-button] {
@@ -27,9 +33,11 @@ mat-slider {
 }
 
 [miWide]{
-  width: 300px;
+  width: 280px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
 [miNarrow]{
-  width: 100px;
+  width: 93px;
 }
