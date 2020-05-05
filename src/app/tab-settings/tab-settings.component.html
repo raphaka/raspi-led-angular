@@ -35,6 +35,10 @@
   </mat-form-field>
   <br>
   <span>Pins</span>
+  <mat-slide-toggle name="pins_enabled" [(ngModel)]="pins_enabled">
+    <!-- <span *ngIf="this.pins_enabled">Enabled</span>
+    <span *ngIf="!this.pins_enabled">Disabled</span> -->
+  </mat-slide-toggle>
   <mat-form-field appearance="fill">
     <mat-label>Red</mat-label>
     <input matInput type="number" name="pinr"

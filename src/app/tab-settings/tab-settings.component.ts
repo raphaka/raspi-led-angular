@@ -13,6 +13,7 @@ export class TabSettingsComponent implements OnInit {
 
   options: FormGroup;
   logfilepath: String;
+  pins_enabled: boolean;
   speedControl = new FormControl(1,Validators.min(1));
   frequencyControl = new FormControl(1,Validators.min(1));
   pinrControl =  new FormControl(1,Validators.min(1));
@@ -51,6 +52,7 @@ export class TabSettingsComponent implements OnInit {
       this.pinrControl.setValue(data.pin_red);
       this.pingControl.setValue(data.pin_green);
       this.pinbControl.setValue(data.pin_blue);
+      this.pins_enabled = data.pins_enabled;
     });
 
   }
