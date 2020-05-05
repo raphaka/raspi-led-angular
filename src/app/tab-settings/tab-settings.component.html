@@ -63,4 +63,24 @@
     #pinb_input>
     <mat-error *ngIf="pinbControl.invalid"></mat-error>
   </mat-form-field>
+  <br>
+  <span>Socket timeout</span>
+  <mat-form-field appearance="fill">
+    <mat-label>in s</mat-label>
+    <input matInput type="number" name="socket_timeout"
+    step="1" min=0
+    [formControl]="sockTO_Control"
+    #sockTO_input>
+    <mat-error *ngIf="sockTO_Control.invalid" >Min timeout: 0.1s</mat-error>
+  </mat-form-field>
+  <br>
+  <span>Udp port</span>
+  <mat-form-field appearance="fill">
+    <mat-label>port number</mat-label>
+    <input matInput type="number" name="udpPort"
+    step="1" min=1024
+    [formControl]="udpPortControl"
+    #udpPort_input>
+    <mat-error *ngIf="udpPortControl.invalid" >Min: 1024</mat-error>
+  </mat-form-field>
 </div>

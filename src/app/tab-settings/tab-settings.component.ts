@@ -19,6 +19,8 @@ export class TabSettingsComponent implements OnInit {
   pinrControl =  new FormControl(1,Validators.min(1));
   pingControl =  new FormControl(1,Validators.min(1));
   pinbControl =  new FormControl(1,Validators.min(1));
+  sockTO_Control = new FormControl(1,Validators.min(0.1));
+  udpPortControl = new FormControl(1,Validators.min(1024));
 
   @ViewChild('bright_slider')bright_slider;
   @ViewChild('contrast_slider')contrast_slider;
@@ -27,6 +29,8 @@ export class TabSettingsComponent implements OnInit {
   @ViewChild('pinr_input')pinr_input;
   @ViewChild('ping_input')ping_input;
   @ViewChild('pinb_input')pinb_input;
+  @ViewChild('sockTO_input')sockTO_input;
+  @ViewChild('udpPort_input')udpPort_input;
 
   constructor(private ser_settings:SettingsService, private fb: FormBuilder) {
     this.options = fb.group({
@@ -35,6 +39,8 @@ export class TabSettingsComponent implements OnInit {
       pinr: this.pinrControl,
       ping: this.pingControl,
       pinb: this.pinbControl,
+      sockTO: this.sockTO_input,
+      udpPort: this.udpPort_input,
     });
   }
 
@@ -53,6 +59,8 @@ export class TabSettingsComponent implements OnInit {
       this.pingControl.setValue(data.pin_green);
       this.pinbControl.setValue(data.pin_blue);
       this.pins_enabled = data.pins_enabled;
+      this.sockTO_Control.setValue(data.socket_timeout);
+      this.udpPortControl.setValue(data.udp_port);
     });
 
   }
@@ -78,9 +86,3 @@ export class TabSettingsComponent implements OnInit {
   private throttledSetContrast = _.throttle(data => this.setContrast(data), 200, {});
 
 }
-
-// export interface Settings {
-//     pins_enabled?: boolean,
-//     socket_timeout?: number,
-//     udp_port?: number
-// }
