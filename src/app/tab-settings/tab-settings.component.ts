@@ -13,14 +13,17 @@ export class TabSettingsComponent implements OnInit {
 
   options: FormGroup;
   speedControl = new FormControl(Validators.min(1));
+  frequencyControl = new FormControl(Validators.min(1));
 
   @ViewChild('bright_slider')bright_slider;
   @ViewChild('contrast_slider')contrast_slider;
   @ViewChild('speed_input')speed_input;
+  @ViewChild('frequency_input')frequency_input;
 
   constructor(private ser_settings:SettingsService, private fb: FormBuilder) {
     this.options = fb.group({
       speed: this.speedControl,
+      frequency: this.frequencyControl
     });
   }
 
@@ -32,6 +35,7 @@ export class TabSettingsComponent implements OnInit {
     this.ser_settings.getSettings().subscribe(data => {
       this.bright_slider.value = data.brightness_maximum;
       this.speedControl.setValue(data.effect_speed * 100);
+      this.frequencyControl.setValue(data.fade_frequency);
       this.contrast_slider.value = data.contrast_adjustment;
     });
 
@@ -57,12 +61,16 @@ export class TabSettingsComponent implements OnInit {
 
   private throttledSetContrast = _.throttle(data => this.setContrast(data), 200, {});
 
+  private setFrequency(){
+    if(this.frequencyControl.value > 0){
+      this.ser_settings.putSettings({'fade_frequency': this.frequencyControl.value});
+    }
+  }
+
+  private throttledSetFrequency = _.throttle(data => this.setFrequency(), 200, {});
 }
 
 // export interface Settings {
-//     brightness_maximum?: number,
-//     contrast_adjustment?: number,
-//     effect_speed?: number,
 //     fade_frequency?: number,
 //     log_file?: String,
 //     pin_blue?: number,

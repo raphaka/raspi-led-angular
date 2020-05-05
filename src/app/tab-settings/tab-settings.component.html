@@ -4,18 +4,28 @@
     thumbLabel min="1" max="255" #bright_slider>Brightness</mat-slider>
   <br>
   <span>Effect speed</span>
-  <mat-form-field appearance="fill" class="duration">
+  <mat-form-field appearance="fill">
     <mat-label>in percent %</mat-label>
     <input matInput type="number" name="speed"
     step="1" min=1
     [formControl]="speedControl"
     (change)="this.throttledSetSpeed($event)"
     #speed_input>
-    <mat-error *ngIf="speedControl.invalid" >Min effect speed: 1</mat-error>
+    <mat-error *ngIf="speedControl.invalid" >Min effect speed: 1%</mat-error>
   </mat-form-field>
   <br>
   <span>Contrast</span>
   <mat-slider (input)="this.throttledSetContrast($event.value)"
     thumbLabel min=0.01 step=0.01 max=3 #contrast_slider>Contrast</mat-slider>
   <br>
+  <span>Fade frequency</span>
+  <mat-form-field appearance="fill">
+    <mat-label>in hz</mat-label>
+    <input matInput type="number" name="frequency"
+    step="1" min=1
+    [formControl]="frequencyControl"
+    (change)="this.throttledSetFrequency($event)"
+    #speed_input>
+    <mat-error *ngIf="frequencyControl.invalid" >Min frequency: 1 hz</mat-error>
+  </mat-form-field>
 </div>
