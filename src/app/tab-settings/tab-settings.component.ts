@@ -15,6 +15,7 @@ export class TabSettingsComponent implements OnInit {
   speedControl = new FormControl(Validators.min(1));
 
   @ViewChild('bright_slider')bright_slider;
+  @ViewChild('contrast_slider')contrast_slider;
   @ViewChild('speed_input')speed_input;
 
   constructor(private ser_settings:SettingsService, private fb: FormBuilder) {
@@ -31,6 +32,7 @@ export class TabSettingsComponent implements OnInit {
     this.ser_settings.getSettings().subscribe(data => {
       this.bright_slider.value = data.brightness_maximum;
       this.speedControl.setValue(data.effect_speed * 100);
+      this.contrast_slider.value = data.contrast_adjustment;
     });
 
   }
@@ -49,5 +51,24 @@ export class TabSettingsComponent implements OnInit {
 
   private throttledSetBright = _.throttle(data => this.setBright(data), 200, {});
 
+  private setContrast(contrast: number){
+    this.ser_settings.putSettings({'contrast_adjustment': contrast});
+  }
+
+  private throttledSetContrast = _.throttle(data => this.setContrast(data), 200, {});
 
 }
+
+// export interface Settings {
+//     brightness_maximum?: number,
+//     contrast_adjustment?: number,
+//     effect_speed?: number,
+//     fade_frequency?: number,
+//     log_file?: String,
+//     pin_blue?: number,
+//     pin_green?: number,
+//     pin_red?: number,
+//     pins_enabled?: boolean,
+//     socket_timeout?: number,
+//     udp_port?: number
+// }

@@ -13,4 +13,9 @@
     #speed_input>
     <mat-error *ngIf="speedControl.invalid" >Min effect speed: 1</mat-error>
   </mat-form-field>
+  <br>
+  <span>Contrast</span>
+  <mat-slider (input)="this.throttledSetContrast($event.value)"
+    thumbLabel min=0.01 step=0.01 max=3 #contrast_slider>Contrast</mat-slider>
+  <br>
 </div>
