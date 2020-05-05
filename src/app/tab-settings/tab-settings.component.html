@@ -33,4 +33,30 @@
     <mat-label>path</mat-label>
     <input matInput [(ngModel)]="logfilepath" type="text" name="name" required #lfp="ngModel">
   </mat-form-field>
+  <br>
+  <span>Pins</span>
+  <mat-form-field appearance="fill">
+    <mat-label>Red</mat-label>
+    <input matInput type="number" name="pinr"
+    step="1" min=1
+    [formControl]="pinrControl"
+    #pinr_input>
+    <mat-error *ngIf="pinrControl.invalid"></mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Green</mat-label>
+    <input matInput type="number" name="ping"
+    step="1" min=1
+    [formControl]="pingControl"
+    #ping_input>
+    <mat-error *ngIf="pingControl.invalid"></mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Blue</mat-label>
+    <input matInput type="number" name="pinb"
+    step="1" min=1
+    [formControl]="pinbControl"
+    #pinb_input>
+    <mat-error *ngIf="pinbControl.invalid"></mat-error>
+  </mat-form-field>
 </div>

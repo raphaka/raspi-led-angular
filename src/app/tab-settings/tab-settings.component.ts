@@ -13,18 +13,27 @@ export class TabSettingsComponent implements OnInit {
 
   options: FormGroup;
   logfilepath: String;
-  speedControl = new FormControl(Validators.min(1));
-  frequencyControl = new FormControl(Validators.min(1));
+  speedControl = new FormControl(1,Validators.min(1));
+  frequencyControl = new FormControl(1,Validators.min(1));
+  pinrControl =  new FormControl(1,Validators.min(1));
+  pingControl =  new FormControl(1,Validators.min(1));
+  pinbControl =  new FormControl(1,Validators.min(1));
 
   @ViewChild('bright_slider')bright_slider;
   @ViewChild('contrast_slider')contrast_slider;
   @ViewChild('speed_input')speed_input;
   @ViewChild('frequency_input')frequency_input;
+  @ViewChild('pinr_input')pinr_input;
+  @ViewChild('ping_input')ping_input;
+  @ViewChild('pinb_input')pinb_input;
 
   constructor(private ser_settings:SettingsService, private fb: FormBuilder) {
     this.options = fb.group({
       speed: this.speedControl,
-      frequency: this.frequencyControl
+      frequency: this.frequencyControl,
+      pinr: this.pinrControl,
+      ping: this.pingControl,
+      pinb: this.pinbControl,
     });
   }
 
@@ -39,6 +48,9 @@ export class TabSettingsComponent implements OnInit {
       this.frequencyControl.setValue(data.fade_frequency);
       this.contrast_slider.value = data.contrast_adjustment;
       this.logfilepath = data.log_file;
+      this.pinrControl.setValue(data.pin_red);
+      this.pingControl.setValue(data.pin_green);
+      this.pinbControl.setValue(data.pin_blue);
     });
 
   }
@@ -66,9 +78,6 @@ export class TabSettingsComponent implements OnInit {
 }
 
 // export interface Settings {
-//     pin_blue?: number,
-//     pin_green?: number,
-//     pin_red?: number,
 //     pins_enabled?: boolean,
 //     socket_timeout?: number,
 //     udp_port?: number
