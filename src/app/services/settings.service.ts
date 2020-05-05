@@ -53,7 +53,6 @@ export class SettingsService {
 }
 
 export interface Settings {
-    speed?: number;
     brightness_maximum?: number,
     contrast_adjustment?: number,
     effect_speed?: number,

@@ -1,0 +1,7 @@
+div.category * {
+  margin-left: 10px;
+}
+
+mat-slider {
+  width: 255px;
+}

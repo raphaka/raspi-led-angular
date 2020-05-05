@@ -25,6 +25,7 @@ import { ColorsService } from './services/colors.service';
 import { PostColorDialogComponent } from './post-color-dialog/post-color-dialog.component';
 import { EffectComponent } from './effect/effect.component';
 import { NewEffectDialogComponent } from './new-effect-dialog/new-effect-dialog.component';
+import { TabSettingsComponent } from './tab-settings/tab-settings.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NewEffectDialogComponent } from './new-effect-dialog/new-effect-dialog.
     TabEffectsComponentComponent,
     PostColorDialogComponent,
     EffectComponent,
-    NewEffectDialogComponent
+    NewEffectDialogComponent,
+    TabSettingsComponent
   ],
   entryComponents: [
     PostColorDialogComponent

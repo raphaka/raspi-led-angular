@@ -1,0 +1,16 @@
+<div class="category">
+  <span>Brightness</span>
+  <mat-slider (input)="this.throttledSetBright($event.value)"
+    thumbLabel min="1" max="255" #bright_slider>Brightness</mat-slider>
+  <br>
+  <span>Effect speed</span>
+  <mat-form-field appearance="fill" class="duration">
+    <mat-label>in percent %</mat-label>
+    <input matInput type="number" name="speed"
+    step="1" min=1
+    [formControl]="speedControl"
+    (change)="this.throttledSetSpeed($event)"
+    #speed_input>
+    <mat-error *ngIf="speedControl.invalid" >Min effect speed: 1</mat-error>
+  </mat-form-field>
+</div>
