@@ -18,5 +18,8 @@
   <mat-icon id="right" *ngIf="!last"
     [style.color]="util.getTextColorHex(e.color)"
     (click)="this.moveElementRight(i)">chevron_right</mat-icon>
+  <mat-icon id="delete"
+    [style.color]="util.getTextColorHex(e.color)"
+    (click)="this.removeElement(i)">delete</mat-icon>
   </a>
 </div>

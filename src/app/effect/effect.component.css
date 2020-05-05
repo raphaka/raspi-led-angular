@@ -16,7 +16,7 @@ div.scrollmenu a {
 }
 
 div.scrollmenu a:hover {
-  /* background-color: #777; */
+  position: relative;
 }
 
 p * {
@@ -31,10 +31,21 @@ p span {
 
 #left {
   font-size: x-large;
-  float: left;
+  position: absolute;
+  left:0px;
+  top: 0px;
 }
 
 #right {
   font-size: x-large;
-  float: right;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+}
+
+#delete {
+  font-size: x-large;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
 }

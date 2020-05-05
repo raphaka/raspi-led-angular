@@ -73,6 +73,11 @@ export class EffectComponent implements OnInit {
     this.effect.edited = true;
   }
 
+  private removeElement(i: number){
+    this.effect.value.splice(i,1);
+    this.effect.edited = true;
+  }
+
   // color of the prevoius element in effect is used as start color for linear gradient
   // when no gradient should be visible, the current color is returned
   private getPreviousColor(i: number,fade: boolean){
