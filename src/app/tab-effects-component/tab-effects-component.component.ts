@@ -31,9 +31,9 @@ export class TabEffectsComponentComponent implements OnInit {
     this.ser_settings.putSettings({'effect_speed': speed/100});
   }
 
-  private throttledSetSpeed = _.throttle(data => this.setSpeed(data), 200, {});
+  public throttledSetSpeed = _.throttle(data => this.setSpeed(data), 200, {});
 
-  private addEffect(){
+  public addEffect(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
         newEffect: true
@@ -48,7 +48,7 @@ export class TabEffectsComponentComponent implements OnInit {
     });
   }
 
-  private refreshEffects(){
+  public refreshEffects(){
     this.ser_effects.getEffects().subscribe(data => this.effects = data);
   }
 

@@ -11,17 +11,19 @@ import * as _ from 'underscore';
 })
 export class PostColorDialogComponent implements OnInit {
 
+  name: string;
+
   constructor(private ser_colors: ColorsService) { }
 
   ngOnInit() {}
 
-  private color: String = "000000";
+  public color: String = "000000";
 
   private setColor(c: String){
     this.ser_colors.setColor(c.replace("#", ""));
   }
 
   //limit the request to 12.5 hz, used for colorPickerChange event
-  private throttledSetColor = _.throttle(c => this.setColor(c), 80, {});
+  public throttledSetColor = _.throttle(c => this.setColor(c), 80, {});
 
 }

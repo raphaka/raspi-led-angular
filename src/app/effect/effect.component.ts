@@ -18,22 +18,22 @@ export class EffectComponent implements OnInit {
   @Input() scale: number = 10; // seconds of effect displayed within 100% width
   @Output() updated = new EventEmitter();
 
-  constructor(private ser_effects: EffectsService, private util: UtilService,  public dialog: MatDialog) { }
+  constructor(private ser_effects: EffectsService, public util: UtilService,  public dialog: MatDialog) { }
 
   ngOnInit(): void {}
 
-  private setEffect(id: number){
+  public setEffect(id: number){
       this.ser_effects.setEffect(id);
   }
 
-  private async deleteEffect(id: String){
+  public async deleteEffect(id: number){
     if (id != undefined){ //effect does not yet exist in backend so it will vanish when refreshing UI
       await this.ser_effects.deleteEffect(id);
     }
     this.updated.emit();
   }
 
-  private async postEffect(effect: Effect){
+  public async postEffect(effect: Effect){
     await this.ser_effects.postEffect(effect);
     if(effect.id){  //refresh UI when it's a new effect to get its id
       this.updated.emit();
@@ -41,11 +41,11 @@ export class EffectComponent implements OnInit {
     this.effect.edited = false;
   }
 
-  private refreshEffects(){
+  public refreshEffects(){
     this.updated.emit();
   }
 
-  private addElement(){
+  public addElement(){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = {
         newEffect: false
@@ -59,28 +59,28 @@ export class EffectComponent implements OnInit {
     });
   }
 
-  private moveElementLeft(i: number){
+  public moveElementLeft(i: number){
     let tmp = this.effect.value[i];
     this.effect.value[i] = this.effect.value[i-1];
     this.effect.value[i-1] = tmp;
     this.effect.edited = true;
   }
 
-  private moveElementRight(i: number){
+  public moveElementRight(i: number){
     let tmp = this.effect.value[i];
     this.effect.value[i] = this.effect.value[i+1];
     this.effect.value[i+1] = tmp;
     this.effect.edited = true;
   }
 
-  private removeElement(i: number){
+  public removeElement(i: number){
     this.effect.value.splice(i,1);
     this.effect.edited = true;
   }
 
   // color of the prevoius element in effect is used as start color for linear gradient
   // when no gradient should be visible, the current color is returned
-  private getPreviousColor(i: number,fade: boolean){
+  public getPreviousColor(i: number,fade: boolean){
     if (!fade){
       return this.effect.value[i].color;
     }

@@ -11,6 +11,7 @@ export class NewEffectDialogComponent implements OnInit {
 
   options: FormGroup;
   newEffect: boolean;
+  effectname: string;
   durationControl = new FormControl(1000, Validators.min(10));
 
   constructor(private fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: DialogData) {
@@ -23,8 +24,8 @@ export class NewEffectDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  private color: String = "000000";
-  private fade: boolean = false;
+  public color: String = "000000";
+  public fade: boolean = false;
 
 }
 

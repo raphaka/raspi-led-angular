@@ -93,7 +93,7 @@ export class TabSettingsComponent implements OnInit {
     ,true,true);
   }
 
-  private refreshSettings(){
+  public refreshSettings(){
     this.ser_settings.getSettings().subscribe(data => {
       this.calculateGraph(data.brightness_maximum, data.contrast_adjustment);
       this.bright_slider.value = data.brightness_maximum;
@@ -111,7 +111,7 @@ export class TabSettingsComponent implements OnInit {
 
   }
 
-  private saveAll(){
+  public saveAll(){
     this.ser_settings.putSettings({
       'fade_frequency': this.frequencyControl.value,
       'log_file': this.logfilepath,
@@ -130,20 +130,20 @@ export class TabSettingsComponent implements OnInit {
     }
   }
 
-  private throttledSetSpeed = _.throttle(data => this.setSpeed(), 100, {});
+  public throttledSetSpeed = _.throttle(data => this.setSpeed(), 100, {});
 
   private setBright(bright: number){
     this.ser_settings.putSettings({'brightness_maximum': bright});
     this.calculateGraph(bright,this.contrast_slider.value);
   }
 
-  private throttledSetBright = _.throttle(data => this.setBright(data), 100, {});
+  public throttledSetBright = _.throttle(data => this.setBright(data), 100, {});
 
   private setContrast(contrast: number){
     this.ser_settings.putSettings({'contrast_adjustment': contrast});
     this.calculateGraph(this.bright_slider.value,contrast);
   }
 
-  private throttledSetContrast = _.throttle(data => this.setContrast(data), 100, {});
+  public throttledSetContrast = _.throttle(data => this.setContrast(data), 100, {});
 
 }

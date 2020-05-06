@@ -46,7 +46,7 @@ export class EffectsService {
     ).toPromise();
   }
 
-  async deleteEffect(i: String): Promise<any>{
+  async deleteEffect(i: number): Promise<any>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
