@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -13,8 +13,9 @@ import { Color } from '../shared/color';
 })
 export class ColorsService {
 
-  private url: string = environment.API_URL;
-  constructor(private http: HttpClient) { }
+  constructor(
+    @Inject('API_URL') private url: string,
+    private http: HttpClient) { }
 
   getColors(){
     return this.http.get<Color[]>(`${this.url}/colors`)

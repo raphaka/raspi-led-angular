@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -13,8 +13,9 @@ import { Effect } from '../shared/effect';
 })
 export class EffectsService {
 
-  private url: string = environment.API_URL;
-  constructor(private http: HttpClient) { }
+  constructor(
+    @Inject('API_URL') private url: string,
+    private http: HttpClient) { }
 
   getEffects(){
     return this.http.get<Effect[]>(`${this.url}/effects`)

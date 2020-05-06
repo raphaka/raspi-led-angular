@@ -8,5 +8,8 @@ if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic([
+  { provide: 'API_URL',
+  useValue: environment.API_URL }
+]).bootstrapModule(AppModule)
   .catch(err => console.error(err));
