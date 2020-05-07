@@ -75,19 +75,23 @@ export class TabSettingsComponent implements OnInit {
   }
 
   private calculateGraph(brightness: number, contrast: number){
-    let values:number[] = [];
-    for(let i=0;i<255;i++) {
-      values[i] = ((i/255)**contrast)*brightness;
+    let values:chartPoint[] = [];
+    for(let i=0;i<=255;i+=5) {
+      values[i/5] = {
+        y: ((i/255)**contrast)*brightness,
+        x: i
+      }
     }
     this.redrawChart(values);
   }
 
-  private redrawChart(line:number[]){
+  private redrawChart(line:chartPoint[]){
     this.chart.removeSeries(0);
     this.chart.addSeries(
       {
         type: 'line',
         name: 'Color',
+        marker: { enabled: false },
         data: line
     }
     ,true,true);
@@ -146,4 +150,9 @@ export class TabSettingsComponent implements OnInit {
 
   public throttledSetContrast = _.throttle(data => this.setContrast(data), 100, {});
 
+}
+
+interface chartPoint{
+  x:number,
+  y:number
 }
