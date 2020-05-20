@@ -34,10 +34,7 @@ export class EffectComponent implements OnInit {
   }
 
   public async postEffect(effect: Effect){
-    await this.ser_effects.postEffect(effect);
-    if(effect.id){  //refresh UI when it's a new effect to get its id
-      this.updated.emit();
-    }
+    effect.id = await this.ser_effects.postEffect(effect);
     this.effect.edited = false;
   }
 
