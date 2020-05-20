@@ -2,7 +2,7 @@
   <button mat-raised-button color="accent" *ngIf="effect.edited"  (click)="this.postEffect(effect)">Save</button>
   <button mat-raised-button color="basic" *ngIf="effect.edited"  (click)="this.refreshEffects()">Cancel</button>
    <span>{{effect.name}}</span>
-  <button mat-raised-button color="primary" (click)="this.setEffect(effect.id)">Play</button>
+  <button mat-raised-button color="primary" *ngIf="effect.id!=undefined" (click)="this.setEffect(effect.id)">Play</button>
   <button mat-raised-button color="primary" (click)="this.addElement()">Add element</button>
   <button mat-raised-button color="warn" (click)="this.deleteEffect(effect.id)">Delete</button>
 </p>
