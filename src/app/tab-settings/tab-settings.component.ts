@@ -120,7 +120,7 @@ export class TabSettingsComponent implements OnInit {
       'fade_frequency': this.frequencyControl.value,
       'log_file': this.logfilepath,
       'pin_blue': this.pinbControl.value,
-      'pin_green': this.pinbControl.value,
+      'pin_green': this.pingControl.value,
       'pin_red': this.pinrControl.value,
       'pins_enabled': this.pins_enabled,
       'socket_timeout': this.sockTO_Control.value,
