@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 
 import { MatDialogModule } from '@angular/material/dialog';
@@ -18,6 +19,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 import { ColorPickerModule } from 'ngx-color-picker';
+import { ChartModule } from 'angular-highcharts';
+import * as Highcharts from 'highcharts';
 
 import { TabColorsComponentComponent } from './tab-colors-component/tab-colors-component.component';
 import { TabEffectsComponentComponent } from './tab-effects-component/tab-effects-component.component';
@@ -57,7 +60,8 @@ import { TabSettingsComponent } from './tab-settings/tab-settings.component';
     MatFormFieldModule,
     FormsModule,
     ReactiveFormsModule,
-    ColorPickerModule
+    ColorPickerModule,
+    ChartModule
   ],
   providers: [ColorsService],
   bootstrap: [AppComponent]

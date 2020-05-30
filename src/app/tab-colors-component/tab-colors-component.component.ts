@@ -15,7 +15,7 @@ export class TabColorsComponentComponent implements OnInit {
   breakpoint: number;
   colors: Color[];
 
-  constructor(private ser_colors: ColorsService, private util: UtilService, public dialog: MatDialog) {}
+  constructor(private ser_colors: ColorsService, public util: UtilService, public dialog: MatDialog) {}
 
   onResize(event) {
     this.breakpoint = (event.target.innerWidth <= 600) ? 2 : 6;
@@ -37,16 +37,16 @@ export class TabColorsComponentComponent implements OnInit {
     return cols;
   }
 
-  private setColor(c: String){
+  public setColor(c: String){
     this.ser_colors.setColor(c);
   }
 
-  private async deleteColor(id: String){
+  public async deleteColor(id: String){
     await this.ser_colors.deleteColor(id);
     this.refreshColors();
   }
 
-  private postColorDialog(){
+  public postColorDialog(){
     let dialogRef = this.dialog.open(PostColorDialogComponent);
     dialogRef.afterClosed().subscribe(async result => {
       if(result){

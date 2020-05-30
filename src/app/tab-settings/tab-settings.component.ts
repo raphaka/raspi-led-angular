@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import { Chart } from 'angular-highcharts';
 import * as _ from 'underscore';
 
 import { SettingsService, Settings } from '../services/settings.service';
@@ -11,6 +12,7 @@ import { SettingsService, Settings } from '../services/settings.service';
 })
 export class TabSettingsComponent implements OnInit {
 
+  chart: Chart;
   options: FormGroup;
   logfilepath: String;
   pins_enabled: boolean;
@@ -46,10 +48,58 @@ export class TabSettingsComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshSettings();
+    this.initChart();
   }
 
-  private refreshSettings(){
+  private initChart(){
+    let chartOptions:Highcharts.Options = {
+      chart: { type: 'line' },
+      title: { text: null },
+      legend: { enabled: false },
+      credits: { enabled: false },
+      yAxis: {
+        endOnTick: false,
+        ceiling: 255,
+        max:255,
+        tickInterval: 50,
+        minorTicks:true,
+        title: null },
+      xAxis: {
+        tickInterval: 50,
+        minorTicks: true },
+      series: [{type: 'line',
+        name: 'Color',
+        data: []}]
+    }
+    this.chart = new Chart(chartOptions);
+  }
+
+  private calculateGraph(brightness: number, contrast: number){
+    let values:chartPoint[] = [];
+    for(let i=0;i<=255;i+=5) {
+      values[i/5] = {
+        y: ((i/255)**contrast)*brightness,
+        x: i
+      }
+    }
+    this.redrawChart(values);
+  }
+
+  private redrawChart(line:chartPoint[]){
+    this.chart.removeSeries(0);
+    this.chart.addSeries(
+      {
+        type: 'line',
+        name: 'Color',
+        marker: { enabled: false },
+        data: line
+    }
+    ,true,true);
+  }
+
+  public refreshSettings(){
     this.ser_settings.getSettings().subscribe(data => {
+      this.calculateGraph(data.brightness_maximum, data.contrast_adjustment);
       this.bright_slider.value = data.brightness_maximum;
       this.speedControl.setValue(data.effect_speed * 100);
       this.frequencyControl.setValue(data.fade_frequency);
@@ -65,7 +115,7 @@ export class TabSettingsComponent implements OnInit {
 
   }
 
-  private saveAll(){
+  public saveAll(){
     this.ser_settings.putSettings({
       'fade_frequency': this.frequencyControl.value,
       'log_file': this.logfilepath,
@@ -84,18 +134,25 @@ export class TabSettingsComponent implements OnInit {
     }
   }
 
-  private throttledSetSpeed = _.throttle(data => this.setSpeed(), 200, {});
+  public throttledSetSpeed = _.throttle(data => this.setSpeed(), 100, {});
 
   private setBright(bright: number){
     this.ser_settings.putSettings({'brightness_maximum': bright});
+    this.calculateGraph(bright,this.contrast_slider.value);
   }
 
-  private throttledSetBright = _.throttle(data => this.setBright(data), 200, {});
+  public throttledSetBright = _.throttle(data => this.setBright(data), 100, {});
 
   private setContrast(contrast: number){
     this.ser_settings.putSettings({'contrast_adjustment': contrast});
+    this.calculateGraph(this.bright_slider.value,contrast);
   }
 
-  private throttledSetContrast = _.throttle(data => this.setContrast(data), 200, {});
+  public throttledSetContrast = _.throttle(data => this.setContrast(data), 100, {});
 
+}
+
+interface chartPoint{
+  x:number,
+  y:number
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -12,8 +12,9 @@ import { environment } from '../../environments/environment';
 })
 export class SettingsService {
 
-  private url: string = environment.API_URL;
-  constructor(private http: HttpClient) { }
+  constructor(
+    @Inject('API_URL') private url: string,
+    private http: HttpClient) { }
 
   getSettings(){
     return this.http.get<Settings>(`${this.url}/settings`)
@@ -37,7 +38,6 @@ export class SettingsService {
 
   private handleError(error: HttpErrorResponse) {
     if (error instanceof TimeoutError){
-      window.alert('A timeout occured.');
       return throwError('A timeout occured.');
     } else if (error instanceof ErrorEvent) {
       console.error('A client-side or network error occurred: ', error.message);

@@ -26,6 +26,8 @@
   </table>
 </div>
 
+<div class="chart" [chart]="chart"></div>
+
 <div class="category">
   <h3>Hardware adjustment</h3>
   <table>
@@ -46,7 +48,6 @@
         <mat-label>Red</mat-label>
         <input matInput type="number" name="pinr"
         step="1" min=1
-        [disabled]="!this.pins_enabled"
         [formControl]="pinrControl"
         #pinr_input>
         <mat-error *ngIf="pinrControl.invalid"></mat-error>
@@ -55,7 +56,6 @@
         <mat-label>Green</mat-label>
         <input matInput type="number" name="ping"
         step="1" min=1
-        [disabled]="!this.pins_enabled"
         [formControl]="pingControl"
         #ping_input>
         <mat-error *ngIf="pingControl.invalid"></mat-error>
@@ -64,7 +64,6 @@
         <mat-label>Blue</mat-label>
         <input matInput type="number" name="pinb"
         step="1" min=1
-        [disabled]="!this.pins_enabled"
         [formControl]="pinbControl"
         #pinb_input>
         <mat-error *ngIf="pinbControl.invalid"></mat-error>

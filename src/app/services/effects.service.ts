@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -13,8 +13,9 @@ import { Effect } from '../shared/effect';
 })
 export class EffectsService {
 
-  private url: string = environment.API_URL;
-  constructor(private http: HttpClient) { }
+  constructor(
+    @Inject('API_URL') private url: string,
+    private http: HttpClient) { }
 
   getEffects(){
     return this.http.get<Effect[]>(`${this.url}/effects`)
@@ -45,7 +46,7 @@ export class EffectsService {
     ).toPromise();
   }
 
-  async deleteEffect(i: String): Promise<any>{
+  async deleteEffect(i: number): Promise<any>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json'
@@ -63,7 +64,6 @@ export class EffectsService {
 
   private handleError(error: HttpErrorResponse) {
     if (error instanceof TimeoutError){
-      window.alert('A timeout occured.');
       return throwError('A timeout occured.');
     } else if (error instanceof ErrorEvent) {
       console.error('A client-side or network error occurred: ', error.message);
