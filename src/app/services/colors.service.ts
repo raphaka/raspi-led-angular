@@ -64,7 +64,6 @@ export class ColorsService {
 
   private handleError(error: HttpErrorResponse) {
     if (error instanceof TimeoutError){
-      window.alert('A timeout occured.');
       return throwError('A timeout occured.');
     } else if (error instanceof ErrorEvent) {
       console.error('A client-side or network error occurred: ', error.message);

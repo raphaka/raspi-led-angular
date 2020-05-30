@@ -10,7 +10,7 @@
   <a *ngFor="let e of effect.value; index as i; first as first; last as last"
   [ngStyle]="{'background-image': 'linear-gradient(to right,#' + this.getPreviousColor(i,e.fade) + ',#' + e.color +')'}"
   [style.width]="0.001*this.scale*e.duration+'%'"
-  [style.min-width.px]='100'
+  [style.min-width.px]='50'
   >
   <mat-icon id="left" *ngIf="!first"
     [style.color]="util.getTextColorHex(this.getPreviousColor(i,e.fade))"
