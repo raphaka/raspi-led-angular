@@ -83,6 +83,19 @@
       </mat-form-field></td>
     </tr>
     <tr>
+      <td lcol>Log level</td>
+      <td><mat-form-field appearance="fill" miWide>
+        <mat-label>choose log level</mat-label>
+        <mat-select [(value)]="loglevel">
+          <mat-option value="NOTSET">Not set</mat-option>
+          <mat-option value="DEBUG">Debug</mat-option>
+          <mat-option value="INFO">Info</mat-option>
+          <mat-option value="ERROR">Error</mat-option>
+          <mat-option value="CRITICAL">Critical</mat-option>
+        </mat-select>
+      </mat-form-field></td>
+    </tr>
+    <tr>
       <td lcol>UDP port</td>
       <td><mat-form-field appearance="fill" miWide>
         <mat-label>port number</mat-label>
@@ -110,4 +123,8 @@
 <div class="category">
   <button mat-raised-button color="basic"(click)="this.refreshSettings()">Cancel</button>
   <button mat-raised-button color="primary" (click)="this.saveAll()">Save</button>
+</div>
+
+<div class="note">
+  Changes to Logging will be in effect after restarting the service.
 </div>

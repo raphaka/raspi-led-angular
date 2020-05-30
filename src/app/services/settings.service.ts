@@ -59,6 +59,7 @@ export interface Settings {
     effect_speed?: number,
     fade_frequency?: number,
     log_file?: String,
+    log_level?: String,
     pin_blue?: number,
     pin_green?: number,
     pin_red?: number,

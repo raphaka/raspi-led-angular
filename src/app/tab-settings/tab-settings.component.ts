@@ -15,6 +15,7 @@ export class TabSettingsComponent implements OnInit {
   chart: Chart;
   options: FormGroup;
   logfilepath: String;
+  loglevel: String;
   pins_enabled: boolean;
   speedControl = new FormControl(1,Validators.min(1));
   frequencyControl = new FormControl(1,Validators.min(1));
@@ -105,6 +106,7 @@ export class TabSettingsComponent implements OnInit {
       this.frequencyControl.setValue(data.fade_frequency);
       this.contrast_slider.value = data.contrast_adjustment;
       this.logfilepath = data.log_file;
+      this.loglevel = data.log_level;
       this.pinrControl.setValue(data.pin_red);
       this.pingControl.setValue(data.pin_green);
       this.pinbControl.setValue(data.pin_blue);
@@ -119,6 +121,7 @@ export class TabSettingsComponent implements OnInit {
     this.ser_settings.putSettings({
       'fade_frequency': this.frequencyControl.value,
       'log_file': this.logfilepath,
+      'log_level': this.loglevel,
       'pin_blue': this.pinbControl.value,
       'pin_green': this.pingControl.value,
       'pin_red': this.pinrControl.value,

@@ -6,6 +6,11 @@ div.category * {
   text-align: center;
 }
 
+div.note {
+  text-align: center;
+  font-size: small;
+}
+
 div.chart {
   max-width: 500px;
   margin-left:auto;
