@@ -6,8 +6,16 @@ button {
   margin-left: 10px;
 }
 
+span {
+  white-space:nowrap;
+}
+
 mat-slider {
   width: 300px;
+}
+
+.sliders {
+  margin-top: 12px;
 }
 
 [mat-raised-button] {
