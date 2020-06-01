@@ -30,6 +30,7 @@ import { PostColorDialogComponent } from './post-color-dialog/post-color-dialog.
 import { EffectComponent } from './effect/effect.component';
 import { NewEffectDialogComponent } from './new-effect-dialog/new-effect-dialog.component';
 import { TabSettingsComponent } from './tab-settings/tab-settings.component';
+import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { TabSettingsComponent } from './tab-settings/tab-settings.component';
     PostColorDialogComponent,
     EffectComponent,
     NewEffectDialogComponent,
-    TabSettingsComponent
+    TabSettingsComponent,
+    DeleteConfirmDialogComponent
   ],
   entryComponents: [
     PostColorDialogComponent

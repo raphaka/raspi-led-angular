@@ -5,6 +5,7 @@ import { UtilService } from '../services/util.service';
 import { EffectsService } from '../services/effects.service';
 import { Effect } from '../shared/effect';
 import { NewEffectDialogComponent } from '../new-effect-dialog/new-effect-dialog.component';
+import { DeleteConfirmDialogComponent } from '../delete-confirm-dialog/delete-confirm-dialog.component';
 
 
 @Component({
@@ -26,11 +27,20 @@ export class EffectComponent implements OnInit {
       this.ser_effects.setEffect(id);
   }
 
-  public async deleteEffect(id: number){
-    if (id != undefined){ //effect does not yet exist in backend so it will vanish when refreshing UI
-      await this.ser_effects.deleteEffect(id);
-    }
-    this.updated.emit();
+  public async deleteEffect(id: number, name: String){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = {
+        item: name
+    };
+    let dialogRef = this.dialog.open(DeleteConfirmDialogComponent,dialogConfig);
+    dialogRef.afterClosed().subscribe(async result => {
+      if(result){
+        if (id != undefined){ //effect does not yet exist in backend so it will vanish when refreshing UI
+          await this.ser_effects.deleteEffect(id);
+        }
+        this.updated.emit();
+      }
+    });
   }
 
   public async postEffect(effect: Effect){
