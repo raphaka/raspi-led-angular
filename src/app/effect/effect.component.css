@@ -19,6 +19,7 @@ div.scrollmenu a:hover{
   position: relative;
 }
 
+
 p * {
   margin-right: 10px;
 }
@@ -27,9 +28,13 @@ p span {
   font-size: 24px;
 }
 
-.mat-icon { cursor: pointer }
+.mat-icon {
+  cursor: pointer;
+  visibility: hidden;
+}
 
 #left{
+  visibility: visible;
   font-size: x-large;
   float: left;
   position: absolute;
@@ -38,6 +43,7 @@ p span {
 }
 
 #right{
+  visibility: visible;
   font-size: x-large;
   float: right;
   position: absolute;
@@ -46,6 +52,7 @@ p span {
 }
 
 #delete{
+  visibility: visible;
   font-size: x-large;
   position: absolute;
   bottom: 0px;
