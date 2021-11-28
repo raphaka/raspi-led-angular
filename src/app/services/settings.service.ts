@@ -40,7 +40,7 @@ export class SettingsService {
     if (error instanceof TimeoutError){
       return throwError('A timeout occured.');
     } else if (error instanceof ErrorEvent) {
-      console.error('A client-side or network error occurred: ', error.message);
+      console.error('A client-side or network error occurred: ', error);
     } else {
       console.error(
         `Backend returned code ${error.status}, ` +

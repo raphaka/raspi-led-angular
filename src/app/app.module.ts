@@ -43,9 +43,6 @@ import { DeleteConfirmDialogComponent } from './delete-confirm-dialog/delete-con
     TabSettingsComponent,
     DeleteConfirmDialogComponent
   ],
-  entryComponents: [
-    PostColorDialogComponent
-  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
